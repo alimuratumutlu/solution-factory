@@ -133,7 +133,9 @@ const viewModes = [
   { label: "Timeline", icon: CalendarDays },
   { label: "Table", icon: Table2 },
   { label: "Pipeline", icon: GitBranch },
-];
+] as const;
+
+type ViewMode = (typeof viewModes)[number]["label"];
 
 const planRows = [
   ["Week 1", "Define the real constraint", "High", "Reflection"],
@@ -142,8 +144,131 @@ const planRows = [
   ["Week 4", "Commit to the next version", "High", "Decision"],
 ];
 
+const kanbanColumns = [
+  {
+    title: "To clarify",
+    items: ["Real constraint", "Launch audience", "Success signal"],
+  },
+  {
+    title: "In progress",
+    items: ["Workflow proof", "Public story"],
+  },
+  {
+    title: "Review",
+    items: ["Risk checkpoint", "Positioning decision"],
+  },
+  {
+    title: "Ready",
+    items: ["First release plan"],
+  },
+];
+
+const timelineItems = [
+  ["Day 1", "Reflect the real problem back to the user."],
+  ["Day 3", "Create the first editable plan from the goal."],
+  ["Week 1", "Validate the plan with one real launch scenario."],
+  ["Week 2", "Publish the open source story and demo video."],
+  ["Week 4", "Decide which nodes should become executable."],
+];
+
+const pipelineStages = [
+  ["Intake", "Capture the messy goal and current context."],
+  ["Questions", "Generate missing-context follow-ups."],
+  ["Reflection", "Confirm the understood problem before planning."],
+  ["Decompose", "Turn the goal into milestones and checkpoints."],
+  ["Views", "Render the same plan as graph, kanban, timeline, or table."],
+];
+
+function renderPlanView(selectedView: ViewMode) {
+  if (selectedView === "Kanban") {
+    return (
+      <div className="plan-view kanban-board">
+        {kanbanColumns.map((column) => (
+          <section className="kanban-column" key={column.title}>
+            <h3>{column.title}</h3>
+            {column.items.map((item) => (
+              <div className="kanban-item" key={item}>
+                {item}
+              </div>
+            ))}
+          </section>
+        ))}
+      </div>
+    );
+  }
+
+  if (selectedView === "Timeline") {
+    return (
+      <div className="plan-view timeline-view">
+        {timelineItems.map(([time, action]) => (
+          <div className="timeline-item" key={`${time}-${action}`}>
+            <span>{time}</span>
+            <strong>{action}</strong>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (selectedView === "Table") {
+    return (
+      <div className="plan-view detail-table">
+        <div className="detail-table-row detail-table-head">
+          <span>When</span>
+          <span>Action</span>
+          <span>Priority</span>
+          <span>Type</span>
+        </div>
+        {planRows.map(([time, action, priority, type]) => (
+          <div className="detail-table-row" key={`${time}-${action}`}>
+            <span>{time}</span>
+            <strong>{action}</strong>
+            <span>{priority}</span>
+            <span>{type}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (selectedView === "Pipeline") {
+    return (
+      <div className="plan-view pipeline-view">
+        {pipelineStages.map(([stage, description], index) => (
+          <div className="pipeline-stage" key={stage}>
+            <div>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{stage}</h3>
+              <p>{description}</p>
+            </div>
+            {index < pipelineStages.length - 1 ? (
+              <GitBranch className="pipeline-arrow" size={22} />
+            ) : null}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <ReactFlow
+      nodes={goalNodes}
+      edges={goalEdges}
+      fitView
+      fitViewOptions={{ padding: 0.24 }}
+      nodesDraggable
+      nodesConnectable={false}
+    >
+      <Background gap={24} size={1} />
+      <Controls />
+    </ReactFlow>
+  );
+}
+
 function App() {
-  const [selectedView, setSelectedView] = useState("Graph");
+  const [selectedView, setSelectedView] = useState<ViewMode>("Graph");
+  const [questionsGenerated, setQuestionsGenerated] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   return (
     <main className="app-shell">
@@ -168,9 +293,13 @@ function App() {
             Available assets: signed macOS app, GitHub repo, first release, and
             a clear open source direction.
           </p>
-          <button className="primary-action" type="button">
+          <button
+            className="primary-action"
+            type="button"
+            onClick={() => setQuestionsGenerated(true)}
+          >
             <Sparkles size={17} />
-            Generate next questions
+            {questionsGenerated ? "Questions ready" : "Generate next questions"}
           </button>
         </section>
 
@@ -187,7 +316,7 @@ function App() {
         </section>
       </aside>
 
-      <section className="workspace">
+      <section className={showSettings ? "workspace settings-open" : "workspace"}>
         <header className="topbar">
           <div>
             <h2>Turn messy goals into structured action maps.</h2>
@@ -196,11 +325,24 @@ function App() {
               pipeline before anything becomes executable.
             </p>
           </div>
-          <button className="settings-button" type="button" aria-label="AI settings">
+          <button
+            className="settings-button"
+            type="button"
+            aria-expanded={showSettings}
+            aria-label="AI settings"
+            onClick={() => setShowSettings((visible) => !visible)}
+          >
             <Settings2 size={17} />
             AI key
           </button>
         </header>
+
+        {showSettings ? (
+          <div className="settings-strip" role="region" aria-label="AI key status">
+            <strong>AI key not connected</strong>
+            <span>Local preview mode is active until a provider key is saved.</span>
+          </div>
+        ) : null}
 
         <div className="view-switcher" aria-label="View mode">
           {viewModes.map((mode) => {
@@ -222,17 +364,7 @@ function App() {
         </div>
 
         <div className="flow-frame">
-          <ReactFlow
-            nodes={goalNodes}
-            edges={goalEdges}
-            fitView
-            fitViewOptions={{ padding: 0.24 }}
-            nodesDraggable
-            nodesConnectable={false}
-          >
-            <Background gap={24} size={1} />
-            <Controls />
-          </ReactFlow>
+          {renderPlanView(selectedView)}
         </div>
 
         <footer className="plan-table">
@@ -270,10 +402,13 @@ function App() {
         <section className="question-panel generated">
           <div className="section-title">
             <MessageSquareText size={17} />
-            <span>Generated follow-ups</span>
+            <span>{questionsGenerated ? "Generated follow-ups" : "Suggested follow-ups"}</span>
           </div>
           <ul>
-            {generatedQuestions.map((question) => (
+            {(questionsGenerated
+              ? generatedQuestions
+              : generatedQuestions.slice(0, 2)
+            ).map((question) => (
               <li key={question}>{question}</li>
             ))}
           </ul>
