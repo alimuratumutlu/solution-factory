@@ -117,15 +117,15 @@ Validate the web build:
 npm run build
 ```
 
-## macOS Prerelease Install
+## macOS Install
 
-The current macOS artifact is an unsigned Apple Silicon prerelease. It is useful
-for contributors and early testing, but it is not yet a polished public
-installer.
+The current public macOS release target is a signed and notarized Apple Silicon
+DMG. Older prereleases are kept for history and may still be unsigned.
 
 Download:
 
 - [App Factory Workbench v0.1.1](https://github.com/alimuratumutlu/app-factory/releases/tag/v0.1.1)
+- [App Factory Workbench releases](https://github.com/alimuratumutlu/app-factory/releases)
 
 If macOS shows this warning:
 
@@ -134,9 +134,9 @@ If macOS shows this warning:
 You should move it to the Trash.
 ```
 
-it usually means Gatekeeper quarantined the unsigned app after download. If you
-trust the release source and downloaded it from this repository, remove the
-quarantine attribute:
+on `v0.1.1` or another unsigned prerelease, it usually means Gatekeeper
+quarantined the app after download. If you trust the release source and
+downloaded it from this repository, remove the quarantine attribute:
 
 ```bash
 xattr -dr com.apple.quarantine "/Applications/App Factory Workbench.app"
@@ -148,17 +148,18 @@ If the app is still in Downloads:
 xattr -dr com.apple.quarantine "$HOME/Downloads/App Factory Workbench.app"
 ```
 
-The correct long-term fix is Apple Developer ID signing and notarization. That
-work is tracked in
-[#11 Prepare macOS signing and notarization workflow](https://github.com/alimuratumutlu/app-factory/issues/11).
+The correct long-term fix is Apple Developer ID signing and notarization. The
+release workflow is configured for that path; use the workaround only for older
+unsigned prereleases.
 
 ## Current Status
 
 This repository is at the initial public scaffold stage. The first milestone is
 to turn the static workbench prototype into a runnable local pipeline engine.
 
-The v0.1.1 macOS prerelease is unsigned. Signed and notarized builds are planned
-before recommending the app to non-developer users.
+The `v0.1.1` macOS prerelease is unsigned. Starting with the signing workflow,
+new macOS release artifacts should be Developer ID signed and notarized before
+being recommended to non-developer users.
 
 ## Open Source Roadmap
 

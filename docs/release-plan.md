@@ -83,8 +83,9 @@ Required GitHub Actions secrets:
 | `APPLE_CERTIFICATE_PASSWORD` | Password for the `.p12` certificate |
 | `APPLE_SIGNING_IDENTITY` | Developer ID Application identity |
 | `APPLE_TEAM_ID` | Apple Developer Team ID |
-| `APPLE_API_KEY` | App Store Connect API key contents for notarization |
+| `APPLE_API_KEY` | App Store Connect API key ID for Tauri notarization |
 | `APPLE_API_KEY_ID` | App Store Connect API key ID |
+| `APPLE_API_PRIVATE_KEY` | Downloaded `.p8` private key contents |
 | `APPLE_API_ISSUER` | App Store Connect issuer ID |
 
 Alternative notarization path:
