@@ -1,192 +1,183 @@
 import {
   Background,
   Controls,
-  MiniMap,
   ReactFlow,
   type Edge,
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import {
-  Bot,
+  BrainCircuit,
+  CalendarDays,
   CheckCircle2,
-  Code2,
-  FileCheck,
+  CircleHelp,
   GitBranch,
-  Play,
-  ShieldCheck,
-  SquareTerminal,
+  LayoutGrid,
+  MessageSquareText,
+  Network,
+  Settings2,
+  Sparkles,
+  Table2,
+  Target,
 } from "lucide-react";
 import "./App.css";
 
-type PipelineNodeData = {
+type GoalNodeData = {
   label: string;
-  runtime: string;
+  kind: string;
   description: string;
-  outputs: string[];
 };
 
-const pipelineNodes: Node<PipelineNodeData>[] = [
+const goalNodes: Node<GoalNodeData>[] = [
   {
-    id: "brief",
-    type: "default",
+    id: "intake",
     position: { x: 0, y: 120 },
     data: {
-      label: "Brief Checkpoint",
-      runtime: "checkpoint",
-      description: "Verify the selected repository has enough product context.",
-      outputs: ["context-docs/brief.md"],
+      label: "Goal intake",
+      kind: "context",
+      description: "Current state, constraints, resources, and target outcome.",
     },
   },
   {
-    id: "pm",
-    position: { x: 280, y: 40 },
+    id: "questions",
+    position: { x: 130, y: 40 },
     data: {
-      label: "PM Spec",
-      runtime: "codex",
-      description: "Turn the brief into requirements and acceptance criteria.",
-      outputs: ["docs/requirements.md"],
+      label: "Questions",
+      kind: "ai",
+      description: "AI-generated follow-ups that find missing context.",
     },
   },
   {
-    id: "techlead",
-    position: { x: 560, y: 40 },
+    id: "reflection",
+    position: { x: 260, y: 40 },
     data: {
-      label: "Tech Architecture",
-      runtime: "codex",
-      description: "Choose stack, data flow, API contracts, and implementation tasks.",
-      outputs: ["docs/architecture.md"],
+      label: "Reflection",
+      kind: "ai",
+      description: "The AI summarizes what it thinks the real bottleneck is.",
     },
   },
   {
-    id: "backend",
-    position: { x: 840, y: 0 },
+    id: "milestones",
+    position: { x: 410, y: 0 },
     data: {
-      label: "Backend Implementation",
-      runtime: "claude",
-      description: "Generate API, services, validation, and data access.",
-      outputs: ["src/backend"],
+      label: "Milestones",
+      kind: "plan",
+      description: "Small outcomes that make the larger goal measurable.",
     },
   },
   {
-    id: "frontend",
-    position: { x: 840, y: 180 },
+    id: "actions",
+    position: { x: 410, y: 190 },
     data: {
-      label: "Frontend Implementation",
-      runtime: "codex",
-      description: "Generate UI screens, state, forms, and API integration.",
-      outputs: ["src/frontend"],
+      label: "Actions",
+      kind: "plan",
+      description: "Concrete steps for the first week and first month.",
     },
   },
   {
-    id: "test",
-    position: { x: 1120, y: 90 },
+    id: "checkpoints",
+    position: { x: 540, y: 95 },
     data: {
-      label: "Test Suite",
-      runtime: "shell",
-      description: "Run local build, lint, type-check, and test commands.",
-      outputs: ["logs/test-run.log"],
+      label: "Checkpoints",
+      kind: "review",
+      description: "Decision gates, risks, and review moments.",
     },
   },
   {
-    id: "qa",
-    position: { x: 1400, y: 90 },
+    id: "views",
+    position: { x: 670, y: 95 },
     data: {
-      label: "QA Review",
-      runtime: "qa_review",
-      description: "Review generated artifacts and route blocking fixes back.",
-      outputs: ["docs/test-report.md"],
-    },
-  },
-  {
-    id: "release",
-    position: { x: 1680, y: 90 },
-    data: {
-      label: "Release",
-      runtime: "release",
-      description: "Create release notes and prepare macOS artifacts.",
-      outputs: ["CHANGELOG.md"],
+      label: "Views",
+      kind: "output",
+      description: "Kanban, timeline, graph, table, or pipeline preview.",
     },
   },
 ];
 
-const pipelineEdges: Edge[] = [
-  { id: "brief-pm", source: "brief", target: "pm" },
-  { id: "pm-techlead", source: "pm", target: "techlead" },
-  { id: "techlead-backend", source: "techlead", target: "backend" },
-  { id: "techlead-frontend", source: "techlead", target: "frontend" },
-  { id: "backend-test", source: "backend", target: "test" },
-  { id: "frontend-test", source: "frontend", target: "test" },
-  { id: "test-qa", source: "test", target: "qa" },
-  { id: "qa-release", source: "qa", target: "release" },
+const goalEdges: Edge[] = [
+  { id: "intake-questions", source: "intake", target: "questions" },
+  { id: "questions-reflection", source: "questions", target: "reflection" },
+  { id: "reflection-milestones", source: "reflection", target: "milestones" },
+  { id: "reflection-actions", source: "reflection", target: "actions" },
+  { id: "milestones-checkpoints", source: "milestones", target: "checkpoints" },
+  { id: "actions-checkpoints", source: "actions", target: "checkpoints" },
+  { id: "checkpoints-views", source: "checkpoints", target: "views" },
   {
-    id: "qa-backend",
-    source: "qa",
-    target: "backend",
+    id: "checkpoints-reflection",
+    source: "checkpoints",
+    target: "reflection",
     animated: true,
-    label: "fix loop",
-  },
-  {
-    id: "qa-frontend",
-    source: "qa",
-    target: "frontend",
-    animated: true,
-    label: "fix loop",
+    label: "revise",
   },
 ];
 
-const runtimeSummary = [
-  { label: "Codex", icon: Bot, detail: "Planning, architecture, implementation" },
-  { label: "Claude Code", icon: Code2, detail: "Implementation and review adapters" },
-  { label: "Shell", icon: SquareTerminal, detail: "Builds, tests, scripts, release commands" },
-  { label: "Checkpoints", icon: FileCheck, detail: "Expected files and artifacts" },
-  { label: "QA Loops", icon: ShieldCheck, detail: "Route failures back to owners" },
+const baseQuestions = [
+  "What do you want to change?",
+  "Where are you right now?",
+  "What resources do you already have?",
+  "What would success look like in 30 days?",
+];
+
+const generatedQuestions = [
+  "Which constraint blocks you most: time, focus, money, skill, or support?",
+  "What decision keeps repeating without becoming an action?",
+  "What would make this plan unrealistic after the first week?",
+];
+
+const viewModes = [
+  { label: "Graph", icon: Network, active: true },
+  { label: "Kanban", icon: LayoutGrid, active: false },
+  { label: "Timeline", icon: CalendarDays, active: false },
+  { label: "Table", icon: Table2, active: false },
+  { label: "Pipeline", icon: GitBranch, active: false },
+];
+
+const planRows = [
+  ["Week 1", "Define the real constraint", "High", "Reflection"],
+  ["Week 2", "Build the first visible proof", "High", "Action"],
+  ["Week 3", "Review what changed", "Medium", "Checkpoint"],
+  ["Week 4", "Commit to the next version", "High", "Decision"],
 ];
 
 function App() {
   return (
     <main className="app-shell">
-      <aside className="sidebar">
+      <aside className="left-rail">
         <div className="brand">
           <div className="brand-mark">
-            <GitBranch size={22} />
+            <GitBranch size={21} />
           </div>
           <div>
             <p>App Factory</p>
-            <h1>Workbench</h1>
+            <h1>Goal-to-Pipeline</h1>
           </div>
         </div>
 
-        <section className="panel">
-          <div className="panel-heading">
-            <span>Pipeline</span>
-            <button type="button" aria-label="Run pipeline">
-              <Play size={16} />
-              Run
-            </button>
+        <section className="goal-card">
+          <div className="section-title">
+            <Target size={17} />
+            <span>Current goal</span>
           </div>
-          <h2>Fullstack App Factory</h2>
+          <h2>Turn a rough product idea into a credible public launch.</h2>
           <p>
-            Visual runner for local coding-agent pipelines that execute against
-            a real repository.
+            Available assets: signed macOS app, GitHub repo, first release, and
+            a clear open source direction.
           </p>
+          <button className="primary-action" type="button">
+            <Sparkles size={17} />
+            Generate next questions
+          </button>
         </section>
 
-        <section className="panel compact">
-          <h2>Runtime Nodes</h2>
-          <ul className="runtime-list">
-            {runtimeSummary.map((item) => {
-              const Icon = item.icon;
-              return (
-                <li key={item.label}>
-                  <Icon size={17} />
-                  <div>
-                    <strong>{item.label}</strong>
-                    <span>{item.detail}</span>
-                  </div>
-                </li>
-              );
-            })}
+        <section className="question-panel">
+          <div className="section-title">
+            <CircleHelp size={17} />
+            <span>Base questions</span>
+          </div>
+          <ul>
+            {baseQuestions.map((question) => (
+              <li key={question}>{question}</li>
+            ))}
           </ul>
         </section>
       </aside>
@@ -194,39 +185,103 @@ function App() {
       <section className="workspace">
         <header className="topbar">
           <div>
-            <p>Open local orchestration standard</p>
-            <h2>Codex and Claude CLI pipeline canvas</h2>
+            <h2>Turn messy goals into structured action maps.</h2>
+            <p>
+              The plan is previewed as graph, kanban, timeline, table, or
+              pipeline before anything becomes executable.
+            </p>
           </div>
-          <div className="status-pill">
-            <CheckCircle2 size={16} />
-            v0.1 scaffold
-          </div>
+          <button className="settings-button" type="button" aria-label="AI settings">
+            <Settings2 size={17} />
+            AI key
+          </button>
         </header>
+
+        <div className="view-switcher" aria-label="View mode">
+          {viewModes.map((mode) => {
+            const Icon = mode.icon;
+            return (
+              <button
+                key={mode.label}
+                className={mode.active ? "active" : undefined}
+                type="button"
+              >
+                <Icon size={16} />
+                {mode.label}
+              </button>
+            );
+          })}
+        </div>
 
         <div className="flow-frame">
           <ReactFlow
-            nodes={pipelineNodes}
-            edges={pipelineEdges}
+            nodes={goalNodes}
+            edges={goalEdges}
             fitView
-            fitViewOptions={{ padding: 0.2 }}
+            fitViewOptions={{ padding: 0.24 }}
             nodesDraggable
             nodesConnectable={false}
           >
-            <Background gap={22} size={1} />
-            <MiniMap pannable zoomable />
+            <Background gap={24} size={1} />
             <Controls />
           </ReactFlow>
         </div>
 
-        <footer className="artifact-bar">
-          <span>Artifacts</span>
-          <code>docs/requirements.md</code>
-          <code>docs/architecture.md</code>
-          <code>src/backend</code>
-          <code>src/frontend</code>
-          <code>docs/test-report.md</code>
+        <footer className="plan-table">
+          <div className="table-heading">
+            <Table2 size={17} />
+            <span>30-day preview</span>
+          </div>
+          <div className="table-grid">
+            {planRows.map(([time, action, priority, type]) => (
+              <div className="table-row" key={`${time}-${action}`}>
+                <span>{time}</span>
+                <strong>{action}</strong>
+                <span>{priority}</span>
+                <span>{type}</span>
+              </div>
+            ))}
+          </div>
         </footer>
       </section>
+
+      <aside className="right-rail">
+        <section className="reflection-card">
+          <div className="section-title">
+            <BrainCircuit size={17} />
+            <span>AI reflection</span>
+          </div>
+          <h2>Understood problem</h2>
+          <p>
+            The main bottleneck is not the app scaffold. It is proving a
+            concrete workflow that users can trust, then turning that proof into
+            a launch story.
+          </p>
+        </section>
+
+        <section className="question-panel generated">
+          <div className="section-title">
+            <MessageSquareText size={17} />
+            <span>Generated follow-ups</span>
+          </div>
+          <ul>
+            {generatedQuestions.map((question) => (
+              <li key={question}>{question}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="checkpoint-card">
+          <div className="section-title">
+            <CheckCircle2 size={17} />
+            <span>Checkpoint</span>
+          </div>
+          <p>
+            Do not publish this as an autonomous runner until at least one real
+            user goal can become an editable plan with visible review points.
+          </p>
+        </section>
+      </aside>
     </main>
   );
 }
