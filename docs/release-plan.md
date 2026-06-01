@@ -97,6 +97,12 @@ Alternative notarization path:
 Implementation notes:
 
 - Prefer App Store Connect API key notarization over Apple ID password auth.
-- Keep v0.1 prereleases marked as prerelease until signing is complete.
+- Keep v0.1 prereleases marked as prerelease while the app is still a scaffold.
 - Document any manual `xattr` workaround only for contributors and early testers.
 - Once signing is configured, verify the downloaded DMG on a clean macOS machine.
+
+Current signing status:
+
+- `v0.1.3` is Developer ID signed and notarized.
+- The downloaded `v0.1.3` DMG was verified with `codesign`, `spctl`, and
+  `xcrun stapler validate`.

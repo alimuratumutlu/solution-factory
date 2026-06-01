@@ -124,7 +124,7 @@ DMG. Older prereleases are kept for history and may still be unsigned.
 
 Download:
 
-- [App Factory Workbench v0.1.1](https://github.com/alimuratumutlu/app-factory/releases/tag/v0.1.1)
+- [App Factory Workbench v0.1.3](https://github.com/alimuratumutlu/app-factory/releases/tag/v0.1.3)
 - [App Factory Workbench releases](https://github.com/alimuratumutlu/app-factory/releases)
 
 If macOS shows this warning:
@@ -157,9 +157,9 @@ unsigned prereleases.
 This repository is at the initial public scaffold stage. The first milestone is
 to turn the static workbench prototype into a runnable local pipeline engine.
 
-The `v0.1.1` macOS prerelease is unsigned. Starting with the signing workflow,
-new macOS release artifacts should be Developer ID signed and notarized before
-being recommended to non-developer users.
+The `v0.1.3` macOS prerelease is Developer ID signed and notarized. The older
+`v0.1.1` prerelease is unsigned and should be treated as a historical test
+artifact.
 
 ## Open Source Roadmap
 
