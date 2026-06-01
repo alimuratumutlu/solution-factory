@@ -8,6 +8,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --radius-panel: 18px;
+  --radius-card: 18px;
+  --radius-control: 14px;
+  --radius-node: 16px;
+  --radius-small: 12px;
 }
 
 * {
@@ -24,6 +29,11 @@ body {
 button {
   border: 0;
   font: inherit;
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.22);
+  outline-offset: 2px;
 }
 
 .app-shell {
@@ -67,7 +77,7 @@ button {
   place-items: center;
   color: #ffffff;
   background: #2563eb;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
 }
 
@@ -96,7 +106,7 @@ button {
   padding: 16px;
   background: #ffffff;
   border: 1px solid #e4e8ee;
-  border-radius: 8px;
+  border-radius: var(--radius-card);
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.04);
 }
 
@@ -134,7 +144,7 @@ button {
   min-height: 38px;
   color: #ffffff;
   background: #2563eb;
-  border-radius: 7px;
+  border-radius: var(--radius-control);
   cursor: pointer;
 }
 
@@ -168,7 +178,7 @@ button {
   color: #243042;
   background: #f8fafc;
   border: 1px solid #e7ebf0;
-  border-radius: 7px;
+  border-radius: var(--radius-small);
   font-size: 13px;
   line-height: 1.35;
 }
@@ -232,7 +242,7 @@ button {
   color: #4f5b6d;
   background: #ffffff;
   border: 1px solid #dfe5ec;
-  border-radius: 7px;
+  border-radius: var(--radius-control);
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
@@ -264,7 +274,7 @@ button {
   color: #17202f;
   background: #ffffff;
   border: 1px solid #dfe5ec;
-  border-radius: 8px;
+  border-radius: var(--radius-node);
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
@@ -308,7 +318,7 @@ button {
 
 .react-flow__controls {
   border: 1px solid #e5eaf0;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
   overflow: hidden;
 }
@@ -337,7 +347,7 @@ button {
   color: #4f5b6d;
   background: #ffffff;
   border: 1px solid #e7ebf0;
-  border-radius: 7px;
+  border-radius: var(--radius-small);
   font-size: 12px;
 }
 

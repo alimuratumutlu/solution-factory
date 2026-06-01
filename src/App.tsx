@@ -6,6 +6,7 @@ import {
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import { useState } from "react";
 import {
   BrainCircuit,
   CalendarDays,
@@ -127,11 +128,11 @@ const generatedQuestions = [
 ];
 
 const viewModes = [
-  { label: "Graph", icon: Network, active: true },
-  { label: "Kanban", icon: LayoutGrid, active: false },
-  { label: "Timeline", icon: CalendarDays, active: false },
-  { label: "Table", icon: Table2, active: false },
-  { label: "Pipeline", icon: GitBranch, active: false },
+  { label: "Graph", icon: Network },
+  { label: "Kanban", icon: LayoutGrid },
+  { label: "Timeline", icon: CalendarDays },
+  { label: "Table", icon: Table2 },
+  { label: "Pipeline", icon: GitBranch },
 ];
 
 const planRows = [
@@ -142,6 +143,8 @@ const planRows = [
 ];
 
 function App() {
+  const [selectedView, setSelectedView] = useState("Graph");
+
   return (
     <main className="app-shell">
       <aside className="left-rail">
@@ -202,10 +205,13 @@ function App() {
         <div className="view-switcher" aria-label="View mode">
           {viewModes.map((mode) => {
             const Icon = mode.icon;
+            const isActive = selectedView === mode.label;
             return (
               <button
                 key={mode.label}
-                className={mode.active ? "active" : undefined}
+                aria-pressed={isActive}
+                className={isActive ? "active" : undefined}
+                onClick={() => setSelectedView(mode.label)}
                 type="button"
               >
                 <Icon size={16} />
@@ -232,7 +238,7 @@ function App() {
         <footer className="plan-table">
           <div className="table-heading">
             <Table2 size={17} />
-            <span>30-day preview</span>
+            <span>{selectedView} preview</span>
           </div>
           <div className="table-grid">
             {planRows.map(([time, action, priority, type]) => (
