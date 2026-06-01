@@ -476,6 +476,58 @@ button:focus-visible {
   overflow: hidden;
 }
 
+.force-graph-view {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.force-graph-view svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.force-link {
+  stroke: #e1e7ee;
+  stroke-linecap: round;
+  stroke-width: 1.4;
+}
+
+.force-node {
+  color: #ff5061;
+  transition: opacity 160ms ease;
+}
+
+.force-node circle {
+  fill: currentColor;
+  stroke: #ffffff;
+  stroke-width: 1.6;
+}
+
+.force-node text {
+  fill: currentColor;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+.force-node-level-3 circle {
+  filter: drop-shadow(0 8px 18px rgba(255, 80, 97, 0.22));
+}
+
+.force-node-level-3 text {
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.force-node-level-2 text {
+  font-size: 13px;
+}
+
 .plan-view {
   height: 100%;
   padding: 24px;

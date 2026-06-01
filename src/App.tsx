@@ -7,8 +7,20 @@ import {
   type Edge,
   type Node,
 } from "@xyflow/react";
+import {
+  forceCenter,
+  forceCollide,
+  forceLink,
+  forceManyBody,
+  forceRadial,
+  forceSimulation,
+  forceX,
+  forceY,
+  type SimulationLinkDatum,
+  type SimulationNodeDatum,
+} from "d3-force";
 import "@xyflow/react/dist/style.css";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   BrainCircuit,
   CalendarDays,
@@ -126,11 +138,11 @@ const generatedQuestions = [
 ];
 
 const viewModes = [
-  { label: "Graph", icon: Network },
+  { label: "Pipeline", icon: GitBranch },
   { label: "Kanban", icon: LayoutGrid },
   { label: "Timeline", icon: CalendarDays },
   { label: "Table", icon: Table2 },
-  { label: "Pipeline", icon: GitBranch },
+  { label: "Graph", icon: Network },
 ] as const;
 
 type ViewMode = (typeof viewModes)[number]["label"];
@@ -152,6 +164,19 @@ type WorkspaceProject = {
   id: string;
   name: string;
   files: PipelineFile[];
+};
+
+type KnowledgeGraphNode = SimulationNodeDatum & {
+  id: string;
+  label: string;
+  level: number;
+  cluster: string;
+};
+
+type KnowledgeGraphLink = SimulationLinkDatum<KnowledgeGraphNode> & {
+  id: string;
+  source: string | KnowledgeGraphNode;
+  target: string | KnowledgeGraphNode;
 };
 
 const initialProjects: WorkspaceProject[] = [
@@ -234,15 +259,257 @@ const timelineItems = [
   ["Week 4", "Decide which nodes should become executable."],
 ];
 
-const pipelineStages = [
-  ["Intake", "Capture the messy goal and current context."],
-  ["Questions", "Generate missing-context follow-ups."],
-  ["Reflection", "Confirm the understood problem before planning."],
-  ["Decompose", "Turn the goal into milestones and checkpoints."],
-  ["Views", "Render the same plan as graph, kanban, timeline, or table."],
-];
+function truncateLabel(label: string) {
+  return label.length > 22 ? `${label.slice(0, 19)}...` : label;
+}
 
-function renderPlanView(selectedView: ViewMode, graphState: GraphState) {
+function createKnowledgeGraph(
+  selectedProject: WorkspaceProject,
+  selectedFile: PipelineFile,
+) {
+  const nodes: KnowledgeGraphNode[] = [
+    {
+      id: "current",
+      label: selectedFile.name,
+      level: 3,
+      cluster: "current",
+      fx: 420,
+      fy: 210,
+    },
+    {
+      id: "workspace",
+      label: selectedProject.name,
+      level: 2,
+      cluster: "workspace",
+    },
+    {
+      id: "intake",
+      label: "Intake",
+      level: 2,
+      cluster: "context",
+    },
+    {
+      id: "questions",
+      label: "Questions",
+      level: 2,
+      cluster: "context",
+    },
+    {
+      id: "reflection",
+      label: "Reflection",
+      level: 2,
+      cluster: "thinking",
+    },
+    {
+      id: "milestones",
+      label: "Milestones",
+      level: 2,
+      cluster: "plan",
+    },
+    {
+      id: "actions",
+      label: "Actions",
+      level: 2,
+      cluster: "plan",
+    },
+    {
+      id: "review",
+      label: "Review loop",
+      level: 2,
+      cluster: "review",
+    },
+  ];
+
+  const links: KnowledgeGraphLink[] = [
+    { id: "workspace-current", source: "workspace", target: "current" },
+    { id: "current-intake", source: "current", target: "intake" },
+    { id: "intake-questions", source: "intake", target: "questions" },
+    { id: "questions-reflection", source: "questions", target: "reflection" },
+    { id: "reflection-milestones", source: "reflection", target: "milestones" },
+    { id: "reflection-actions", source: "reflection", target: "actions" },
+    { id: "actions-review", source: "actions", target: "review" },
+    { id: "review-reflection", source: "review", target: "reflection" },
+  ];
+
+  selectedProject.files.slice(0, 8).forEach((file, index) => {
+    const id = `file-${file.id}`;
+    nodes.push({
+      id,
+      label: file.name,
+      level: file.id === selectedFile.id ? 2 : 1,
+      cluster: "workspace",
+    });
+    links.push({
+      id: `workspace-${id}-${index}`,
+      source: "workspace",
+      target: id,
+    });
+  });
+
+  generatedQuestions.forEach((question, index) => {
+    const id = `question-${index}`;
+    nodes.push({ id, label: question, level: 1, cluster: "questions" });
+    links.push({ id: `questions-${id}`, source: "questions", target: id });
+  });
+
+  planRows.forEach(([time, action, priority], index) => {
+    const id = `action-${index}`;
+    nodes.push({
+      id,
+      label: `${time}: ${action}`,
+      level: priority === "High" ? 1 : 0,
+      cluster: "actions",
+    });
+    links.push({ id: `actions-${id}`, source: "actions", target: id });
+  });
+
+  ["Scope creep", "Wrong audience", "No weekly review", "Unclear proof"].forEach(
+    (risk, index) => {
+      const id = `risk-${index}`;
+      nodes.push({ id, label: risk, level: 0, cluster: "review" });
+      links.push({ id: `review-${id}`, source: "review", target: id });
+    },
+  );
+
+  return { links, nodes };
+}
+
+function ForceGraphView({
+  selectedFile,
+  selectedProject,
+}: {
+  selectedFile: PipelineFile;
+  selectedProject: WorkspaceProject;
+}) {
+  const graph = useMemo(
+    () => createKnowledgeGraph(selectedProject, selectedFile),
+    [selectedFile.id, selectedProject.id, selectedProject.files.length],
+  );
+  const [layout, setLayout] = useState(graph);
+
+  useEffect(() => {
+    const nodes = graph.nodes.map((node, index) => ({
+      ...node,
+      x: node.fx ?? 420 + Math.cos(index) * 80,
+      y: node.fy ?? 210 + Math.sin(index) * 80,
+    }));
+    const links = graph.links.map((link) => ({ ...link }));
+    let tickCount = 0;
+    let animationFrame = 0;
+    const simulation = forceSimulation<KnowledgeGraphNode>(nodes)
+      .force(
+        "link",
+        forceLink<KnowledgeGraphNode, KnowledgeGraphLink>(links)
+          .id((node) => node.id)
+          .distance((link) => {
+            const sourceId =
+              typeof link.source === "string" ? link.source : link.source.id;
+            const targetId =
+              typeof link.target === "string" ? link.target : link.target.id;
+            return sourceId === "current" || targetId === "current" ? 118 : 86;
+          })
+          .strength(0.55),
+      )
+      .force(
+        "charge",
+        forceManyBody<KnowledgeGraphNode>().strength((node) =>
+          node.level >= 3 ? -720 : node.level === 2 ? -260 : -72,
+        ),
+      )
+      .force(
+        "collide",
+        forceCollide<KnowledgeGraphNode>().radius((node) =>
+          node.level >= 3 ? 42 : node.level === 2 ? 31 : 17,
+        ),
+      )
+      .force(
+        "radial",
+        forceRadial<KnowledgeGraphNode>(
+          (node) => (node.level >= 3 ? 0 : node.level === 2 ? 132 : 235),
+          420,
+          210,
+        ).strength(0.22),
+      )
+      .force("x", forceX<KnowledgeGraphNode>(420).strength(0.025))
+      .force("y", forceY<KnowledgeGraphNode>(210).strength(0.025))
+      .force("center", forceCenter<KnowledgeGraphNode>(420, 210))
+      .alpha(1)
+      .alphaDecay(0.018);
+
+    function animate() {
+      simulation.tick();
+      tickCount += 1;
+      setLayout({
+        links: [...links],
+        nodes: nodes.map((node) => ({ ...node })),
+      });
+
+      if (tickCount < 260 && simulation.alpha() > 0.015) {
+        animationFrame = window.requestAnimationFrame(animate);
+      }
+    }
+
+    animate();
+
+    return () => {
+      simulation.stop();
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, [graph]);
+
+  return (
+    <div className="force-graph-view" aria-label="Graph preview">
+      <svg viewBox="0 0 840 420" role="img">
+        <g>
+          {layout.links.map((link) => {
+            const source =
+              typeof link.source === "string" ? undefined : link.source;
+            const target =
+              typeof link.target === "string" ? undefined : link.target;
+
+            if (!source || !target) {
+              return null;
+            }
+
+            return (
+              <line
+                className="force-link"
+                key={link.id}
+                x1={source.x}
+                x2={target.x}
+                y1={source.y}
+                y2={target.y}
+              />
+            );
+          })}
+        </g>
+        <g>
+          {layout.nodes.map((node) => (
+            <g
+              className={`force-node force-node-level-${node.level}`}
+              key={node.id}
+              transform={`translate(${node.x ?? 0} ${node.y ?? 0})`}
+            >
+              <circle r={node.level >= 3 ? 9 : node.level === 2 ? 6 : 3.2} />
+              {node.level > 0 ? (
+                <text dy={node.level >= 3 ? 24 : 20}>
+                  {truncateLabel(node.label)}
+                </text>
+              ) : null}
+            </g>
+          ))}
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+function renderPlanView(
+  selectedView: ViewMode,
+  graphState: GraphState,
+  selectedProject: WorkspaceProject,
+  selectedFile: PipelineFile,
+) {
   if (selectedView === "Kanban") {
     return (
       <div className="plan-view kanban-board">
@@ -294,22 +561,12 @@ function renderPlanView(selectedView: ViewMode, graphState: GraphState) {
     );
   }
 
-  if (selectedView === "Pipeline") {
+  if (selectedView === "Graph") {
     return (
-      <div className="plan-view pipeline-view">
-        {pipelineStages.map(([stage, description], index) => (
-          <div className="pipeline-stage" key={stage}>
-            <div>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{stage}</h3>
-              <p>{description}</p>
-            </div>
-            {index < pipelineStages.length - 1 ? (
-              <GitBranch className="pipeline-arrow" size={22} />
-            ) : null}
-          </div>
-        ))}
-      </div>
+      <ForceGraphView
+        selectedFile={selectedFile}
+        selectedProject={selectedProject}
+      />
     );
   }
 
@@ -330,7 +587,7 @@ function renderPlanView(selectedView: ViewMode, graphState: GraphState) {
 }
 
 function App() {
-  const [selectedView, setSelectedView] = useState<ViewMode>("Graph");
+  const [selectedView, setSelectedView] = useState<ViewMode>("Pipeline");
   const [nodes, , onNodesChange] = useNodesState<Node<GoalNodeData>>(goalNodes);
   const [edges] = useEdgesState(goalEdges);
   const [projects, setProjects] = useState(initialProjects);
@@ -556,7 +813,12 @@ function App() {
         </div>
 
         <div className="flow-frame">
-          {renderPlanView(selectedView, { edges, nodes, onNodesChange })}
+          {renderPlanView(
+            selectedView,
+            { edges, nodes, onNodesChange },
+            selectedProject,
+            selectedFile,
+          )}
         </div>
 
         <footer className="plan-table">
