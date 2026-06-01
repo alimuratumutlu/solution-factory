@@ -43,6 +43,7 @@ Scope:
 
 - Signed macOS app
 - Release artifact on GitHub Releases
+- Apple Silicon release first; Intel x86_64 packaging is tracked separately
 - Demo pipeline included
 - Installation instructions
 
