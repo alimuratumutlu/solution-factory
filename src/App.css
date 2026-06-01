@@ -1,0 +1,270 @@
+:root {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #17201b;
+  background: #f3f4ee;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 1024px;
+  min-height: 100vh;
+}
+
+button {
+  border: 0;
+  font: inherit;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+  color: #eef4ea;
+  background: #17201b;
+  border-right: 1px solid #27332c;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 2px 12px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: #142019;
+  background: #b8f07e;
+  border-radius: 8px;
+}
+
+.brand p,
+.topbar p {
+  margin: 0;
+  color: #7d8a82;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.brand h1,
+.topbar h2,
+.panel h2 {
+  margin: 0;
+}
+
+.brand h1 {
+  color: #f7fbf4;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.panel {
+  padding: 16px;
+  background: #202b24;
+  border: 1px solid #304139;
+  border-radius: 8px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: #aab7ae;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.panel-heading button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  color: #101a14;
+  background: #b8f07e;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.panel h2 {
+  color: #f7fbf4;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.panel p {
+  margin: 10px 0 0;
+  color: #bdc8bf;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.panel.compact {
+  padding: 14px;
+}
+
+.runtime-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin: 14px 0 0;
+  list-style: none;
+}
+
+.runtime-list li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: start;
+  color: #b8f07e;
+}
+
+.runtime-list strong,
+.runtime-list span {
+  display: block;
+}
+
+.runtime-list strong {
+  color: #eef4ea;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.runtime-list span {
+  margin-top: 2px;
+  color: #aab7ae;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.workspace {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-width: 0;
+  background: #f3f4ee;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 84px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #dfe4dc;
+}
+
+.topbar h2 {
+  margin-top: 4px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: #1d3526;
+  background: #e3f7d0;
+  border: 1px solid #bce5a2;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.flow-frame {
+  min-height: 0;
+}
+
+.react-flow__node {
+  width: 210px;
+  padding: 12px;
+  color: #162019;
+  background: #ffffff;
+  border: 1px solid #d9dfd6;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(31, 47, 35, 0.09);
+}
+
+.react-flow__node-default .react-flow__handle {
+  background: #5a7f43;
+}
+
+.react-flow__node-default {
+  font-size: 12px;
+}
+
+.react-flow__node-default::before {
+  display: block;
+  margin-bottom: 6px;
+  color: #5a7f43;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  content: attr(data-id);
+}
+
+.react-flow__edge-path {
+  stroke: #5a7f43;
+  stroke-width: 2;
+}
+
+.react-flow__edge-text {
+  fill: #17201b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.artifact-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 12px 18px;
+  overflow-x: auto;
+  background: #ffffff;
+  border-top: 1px solid #dfe4dc;
+}
+
+.artifact-bar span {
+  color: #5b675e;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.artifact-bar code {
+  flex: 0 0 auto;
+  padding: 6px 8px;
+  color: #27352c;
+  background: #edf1e9;
+  border: 1px solid #dce5d7;
+  border-radius: 6px;
+  font-size: 12px;
+}

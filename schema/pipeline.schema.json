@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/muratumutlu/app-factory/schema/pipeline.schema.json",
+  "title": "App Factory Pipeline",
+  "type": "object",
+  "required": ["version", "name", "nodes", "edges"],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "required": ["id", "type", "label"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["codex", "claude", "shell", "checkpoint", "manual_gate", "qa_review", "release"]
+        },
+        "label": {
+          "type": "string"
+        },
+        "promptFile": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "workingDirectory": {
+          "type": "string"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "success": {
+          "type": "object",
+          "properties": {
+            "filesExist": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "exitCode": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "source", "target"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "condition": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

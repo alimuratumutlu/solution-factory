@@ -1,0 +1,128 @@
+{
+  "version": "0.1.0",
+  "name": "Fullstack App Factory",
+  "description": "A starter coding-agent pipeline for turning a brief into a fullstack app.",
+  "nodes": [
+    {
+      "id": "brief",
+      "type": "checkpoint",
+      "label": "Brief Checkpoint",
+      "inputs": ["context-docs/brief.md"],
+      "success": {
+        "filesExist": ["context-docs/brief.md"]
+      }
+    },
+    {
+      "id": "pm",
+      "type": "codex",
+      "label": "PM Spec",
+      "promptFile": "agents/pm.md",
+      "inputs": ["context-docs/brief.md"],
+      "outputs": ["docs/requirements.md"]
+    },
+    {
+      "id": "techlead",
+      "type": "codex",
+      "label": "Tech Architecture",
+      "promptFile": "agents/techlead.md",
+      "inputs": ["docs/requirements.md"],
+      "outputs": ["docs/architecture.md"]
+    },
+    {
+      "id": "backend",
+      "type": "claude",
+      "label": "Backend Implementation",
+      "promptFile": "agents/backend.md",
+      "inputs": ["docs/architecture.md"],
+      "outputs": ["src/backend"]
+    },
+    {
+      "id": "frontend",
+      "type": "codex",
+      "label": "Frontend Implementation",
+      "promptFile": "agents/frontend.md",
+      "inputs": ["docs/requirements.md", "docs/architecture.md"],
+      "outputs": ["src/frontend"]
+    },
+    {
+      "id": "test",
+      "type": "shell",
+      "label": "Test Suite",
+      "command": "npm run test",
+      "workingDirectory": ".",
+      "success": {
+        "exitCode": 0
+      }
+    },
+    {
+      "id": "qa",
+      "type": "qa_review",
+      "label": "QA Review",
+      "promptFile": "agents/qa.md",
+      "inputs": ["docs/requirements.md", "src"],
+      "outputs": ["docs/test-report.md"]
+    },
+    {
+      "id": "release",
+      "type": "release",
+      "label": "Release Notes",
+      "promptFile": "agents/release.md",
+      "inputs": ["docs/test-report.md"],
+      "outputs": ["CHANGELOG.md"]
+    }
+  ],
+  "edges": [
+    {
+      "id": "brief-pm",
+      "source": "brief",
+      "target": "pm"
+    },
+    {
+      "id": "pm-techlead",
+      "source": "pm",
+      "target": "techlead"
+    },
+    {
+      "id": "techlead-backend",
+      "source": "techlead",
+      "target": "backend"
+    },
+    {
+      "id": "techlead-frontend",
+      "source": "techlead",
+      "target": "frontend"
+    },
+    {
+      "id": "backend-test",
+      "source": "backend",
+      "target": "test"
+    },
+    {
+      "id": "frontend-test",
+      "source": "frontend",
+      "target": "test"
+    },
+    {
+      "id": "test-qa",
+      "source": "test",
+      "target": "qa"
+    },
+    {
+      "id": "qa-release",
+      "source": "qa",
+      "target": "release"
+    },
+    {
+      "id": "qa-backend-fix",
+      "source": "qa",
+      "target": "backend",
+      "condition": "critical backend finding"
+    },
+    {
+      "id": "qa-frontend-fix",
+      "source": "qa",
+      "target": "frontend",
+      "condition": "critical frontend finding"
+    }
+  ]
+}
