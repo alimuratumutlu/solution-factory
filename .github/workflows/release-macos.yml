@@ -51,8 +51,8 @@ jobs:
           APPLE_API_KEY_PATH: ${{ env.APPLE_API_KEY_PATH }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: "App Factory Workbench v__VERSION__"
-          releaseBody: "Signed and notarized macOS release for App Factory Workbench."
+          releaseName: "Solution Factory v__VERSION__"
+          releaseBody: "Signed and notarized macOS release for Solution Factory."
           releaseDraft: true
           prerelease: true
           args: "--target aarch64-apple-darwin"

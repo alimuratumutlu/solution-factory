@@ -1,6 +1,6 @@
-# Fullstack App Factory Pipeline
+# Fullstack Solution Factory Pipeline
 
-This is the first built-in template for App Factory Workbench.
+This is the first built-in template for Solution Factory.
 
 It shows how a product brief can move through planning, architecture,
 implementation, testing, QA, and release nodes while keeping artifacts inside the

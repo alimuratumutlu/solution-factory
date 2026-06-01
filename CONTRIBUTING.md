@@ -1,6 +1,6 @@
 # Contributing
 
-App Factory Workbench is early. The best contributions are small, testable, and
+Solution Factory is early. The best contributions are small, testable, and
 focused on the local pipeline runner.
 
 ## Good First Areas

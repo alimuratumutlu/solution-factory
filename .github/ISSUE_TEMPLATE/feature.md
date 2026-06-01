@@ -1,6 +1,6 @@
 ---
 name: Feature
-about: Propose a new App Factory Workbench feature
+about: Propose a new Solution Factory feature
 title: "[Feature] "
 labels: enhancement
 assignees: ""
@@ -8,11 +8,11 @@ assignees: ""
 
 ## Problem
 
-What developer workflow does this improve?
+What goal, workspace, or planning workflow does this improve?
 
 ## Proposed Solution
 
-What should App Factory Workbench do?
+What should Solution Factory do?
 
 ## Acceptance Criteria
 

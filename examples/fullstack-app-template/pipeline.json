@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "name": "Fullstack App Factory",
+  "name": "Fullstack Solution Factory",
   "description": "A starter coding-agent pipeline for turning a brief into a fullstack app.",
   "nodes": [
     {

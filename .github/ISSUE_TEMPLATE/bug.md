@@ -1,6 +1,6 @@
 ---
 name: Bug
-about: Report a bug in App Factory Workbench
+about: Report a bug in Solution Factory
 title: "[Bug] "
 labels: bug
 assignees: ""
@@ -19,5 +19,5 @@ assignees: ""
 ## Environment
 
 - macOS version:
-- App Factory version:
+- Solution Factory version:
 - Runtime node type:

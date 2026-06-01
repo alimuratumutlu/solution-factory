@@ -2,7 +2,7 @@
 
 ## Release Goals
 
-The first public macOS release should prove one thing: App Factory Workbench is
+The first public macOS release should prove one thing: Solution Factory is
 a credible signed desktop surface for turning messy goals into editable action
 maps.
 
@@ -68,7 +68,7 @@ Open questions:
 Unsigned prereleases may trigger macOS Gatekeeper warnings such as:
 
 ```text
-"App Factory Workbench" is damaged and can't be opened.
+"Solution Factory" is damaged and can't be opened.
 You should move it to the Trash.
 ```
 

@@ -2,7 +2,7 @@
 
 ## Positioning
 
-App Factory Workbench is a local-first Goal-to-Pipeline desktop app. It turns a
+Solution Factory is a local-first Goal-to-Pipeline desktop app. It turns a
 messy goal, project, or life situation into a structured action map that the
 user can inspect as kanban, timeline, graph, table, or pipeline.
 

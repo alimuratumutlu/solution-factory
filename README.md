@@ -1,8 +1,8 @@
-# App Factory Workbench
+# Solution Factory
 
 Goal-to-Pipeline Workbench for turning messy goals into structured action maps.
 
-App Factory Workbench helps a user describe a complex goal, answer the right
+Solution Factory helps a user describe a complex goal, answer the right
 follow-up questions, confirm what the real problem is, and then view the plan as
 kanban, timeline, graph, table, or pipeline.
 
@@ -98,7 +98,7 @@ The same plan can be inspected in multiple ways:
 ## Product Shape
 
 ```text
-app-factory/
+solution-factory/
 ├── src/                            # React + React Flow workbench UI
 ├── src-tauri/                      # Tauri desktop shell
 ├── schema/                         # Open goal pipeline schema
@@ -161,13 +161,13 @@ The current public macOS prerelease is a signed and notarized Apple Silicon DMG.
 
 Download:
 
-- [App Factory Workbench v0.1.3](https://github.com/alimuratumutlu/app-factory/releases/tag/v0.1.3)
-- [App Factory Workbench releases](https://github.com/alimuratumutlu/app-factory/releases)
+- [Solution Factory v0.1.3](https://github.com/alimuratumutlu/solution-factory/releases/tag/v0.1.3)
+- [Solution Factory releases](https://github.com/alimuratumutlu/solution-factory/releases)
 
 If macOS shows this warning on `v0.1.1` or another unsigned prerelease:
 
 ```text
-"App Factory Workbench" is damaged and can't be opened.
+"Solution Factory" is damaged and can't be opened.
 You should move it to the Trash.
 ```
 
@@ -176,7 +176,7 @@ trust the release source and downloaded it from this repository, remove the
 quarantine attribute:
 
 ```bash
-xattr -dr com.apple.quarantine "/Applications/App Factory Workbench.app"
+xattr -dr com.apple.quarantine "/Applications/Solution Factory.app"
 ```
 
 The `v0.1.3` prerelease is Developer ID signed and notarized. The older `v0.1.1`

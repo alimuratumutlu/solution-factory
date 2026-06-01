@@ -156,8 +156,8 @@ type WorkspaceProject = {
 
 const initialProjects: WorkspaceProject[] = [
   {
-    id: "app-factory",
-    name: "App Factory",
+    id: "solution-factory",
+    name: "Solution Factory",
     files: [
       {
         id: "public-launch",
@@ -415,7 +415,7 @@ function App() {
               <GitBranch size={21} />
             </div>
             <div>
-              <p>App Factory</p>
+              <p>Solution Factory</p>
               <h1>Goal-to-Pipeline</h1>
             </div>
           </div>
