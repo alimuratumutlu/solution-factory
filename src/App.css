@@ -13,6 +13,12 @@
   --radius-control: 14px;
   --radius-node: 16px;
   --radius-small: 12px;
+  --accent: #ff5061;
+  --accent-strong: #e83f52;
+  --accent-soft: #fff1f3;
+  --accent-border: #ffc7d0;
+  --accent-glow: rgba(255, 80, 97, 0.2);
+  --accent-glow-strong: rgba(255, 80, 97, 0.28);
 }
 
 * {
@@ -32,7 +38,7 @@ button {
 }
 
 button:focus-visible {
-  outline: 3px solid rgba(37, 99, 235, 0.22);
+  outline: 3px solid var(--accent-glow-strong);
   outline-offset: 2px;
 }
 
@@ -84,9 +90,9 @@ button:focus-visible {
   height: 42px;
   place-items: center;
   color: #ffffff;
-  background: #2563eb;
+  background: var(--accent);
   border-radius: var(--radius-control);
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 10px 24px var(--accent-glow);
 }
 
 .brand p,
@@ -218,9 +224,9 @@ button:focus-visible {
 
 .project-row.selected,
 .file-row.selected {
-  color: #174ea6;
-  background: #eff6ff;
-  border-color: #bfdbfe;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
 }
 
 .goal-card,
@@ -243,7 +249,7 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #2563eb;
+  color: var(--accent);
 }
 
 .goal-card h2,
@@ -271,7 +277,7 @@ button:focus-visible {
   gap: 8px;
   min-height: 38px;
   color: #ffffff;
-  background: #2563eb;
+  background: var(--accent);
   border-radius: var(--radius-control);
   cursor: pointer;
 }
@@ -289,7 +295,7 @@ button:focus-visible {
   padding: 9px 12px;
   font-size: 13px;
   font-weight: 750;
-  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.18);
+  box-shadow: 0 10px 22px var(--accent-glow);
 }
 
 .question-panel ul {
@@ -312,8 +318,8 @@ button:focus-visible {
 }
 
 .question-panel.generated li {
-  border-color: #dbeafe;
-  background: #f7fbff;
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
 }
 
 .workspace {
@@ -367,7 +373,7 @@ button:focus-visible {
 }
 
 .settings-strip strong {
-  color: #174ea6;
+  color: var(--accent-strong);
 }
 
 .settings-strip span {
@@ -402,9 +408,9 @@ button:focus-visible {
 }
 
 .view-switcher button.active {
-  color: #174ea6;
-  background: #eff6ff;
-  border-color: #bfdbfe;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
 }
 
 .flow-frame {
@@ -439,7 +445,7 @@ button:focus-visible {
 .react-flow__node-default::before {
   display: block;
   margin-bottom: 6px;
-  color: #2563eb;
+  color: var(--accent-strong);
   font-size: 10px;
   font-weight: 850;
   text-transform: uppercase;
@@ -450,7 +456,7 @@ button:focus-visible {
 .react-flow__node-default .react-flow__handle {
   width: 9px;
   height: 9px;
-  background: #10b981;
+  background: var(--accent);
   border: 2px solid #ffffff;
 }
 
@@ -460,7 +466,7 @@ button:focus-visible {
 }
 
 .react-flow__edge.animated .react-flow__edge-path {
-  stroke: #10b981;
+  stroke: var(--accent);
 }
 
 .react-flow__edge-text {
@@ -496,7 +502,7 @@ button:focus-visible {
 }
 
 .force-node {
-  color: #ff5061;
+  color: var(--accent);
   transition: opacity 160ms ease;
 }
 
@@ -516,7 +522,7 @@ button:focus-visible {
 }
 
 .force-node-level-3 circle {
-  filter: drop-shadow(0 8px 18px rgba(255, 80, 97, 0.22));
+  filter: drop-shadow(0 8px 18px var(--accent-glow-strong));
 }
 
 .force-node-level-3 text {
@@ -586,11 +592,11 @@ button:focus-visible {
   align-items: center;
   min-height: 58px;
   padding: 0 0 0 18px;
-  border-left: 2px solid #bfdbfe;
+  border-left: 2px solid var(--accent-border);
 }
 
 .timeline-item span {
-  color: #2563eb;
+  color: var(--accent-strong);
   font-size: 12px;
   font-weight: 850;
   text-transform: uppercase;
@@ -656,15 +662,15 @@ button:focus-visible {
   padding: 14px;
   color: #334155;
   background: #ffffff;
-  border: 1px solid #dbeafe;
+  border: 1px solid var(--accent-border);
   border-radius: var(--radius-card);
-  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.06);
+  box-shadow: 0 14px 32px rgba(255, 80, 97, 0.07);
 }
 
 .pipeline-stage span {
   display: inline-flex;
   margin-bottom: 10px;
-  color: #2563eb;
+  color: var(--accent-strong);
   font-size: 11px;
   font-weight: 850;
 }
@@ -677,7 +683,7 @@ button:focus-visible {
 }
 
 .pipeline-arrow {
-  color: #2563eb;
+  color: var(--accent);
 }
 
 .plan-table {
@@ -717,7 +723,7 @@ button:focus-visible {
 }
 
 .reflection-card {
-  border-color: #dbeafe;
+  border-color: var(--accent-border);
 }
 
 .checkpoint-card {
