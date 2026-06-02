@@ -5,10 +5,19 @@ const examplesRoot = "examples";
 const pipelinePaths = readdirSync(examplesRoot, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => join(examplesRoot, entry.name, "pipeline.json"));
+const solutionMapPaths = readdirSync(examplesRoot, { withFileTypes: true })
+  .filter((entry) => entry.isDirectory())
+  .map((entry) => join(examplesRoot, entry.name, "solution-map.json"));
 
 const failures = [];
 
 for (const pipelinePath of pipelinePaths) {
+  try {
+    readFileSync(pipelinePath, "utf8");
+  } catch {
+    continue;
+  }
+
   const pipeline = JSON.parse(readFileSync(pipelinePath, "utf8"));
   const nodeIds = new Set();
 
@@ -32,10 +41,29 @@ for (const pipelinePath of pipelinePaths) {
   }
 }
 
+for (const solutionMapPath of solutionMapPaths) {
+  let solutionMap;
+  try {
+    solutionMap = JSON.parse(readFileSync(solutionMapPath, "utf8"));
+  } catch {
+    continue;
+  }
+
+  if (!solutionMap.version) failures.push(`${solutionMapPath}: Solution map must include version.`);
+  if (!solutionMap.id) failures.push(`${solutionMapPath}: Solution map must include id.`);
+  if (!solutionMap.title) failures.push(`${solutionMapPath}: Solution map must include title.`);
+  if (!solutionMap.problem?.original) failures.push(`${solutionMapPath}: Solution map must include problem.original.`);
+  if (!solutionMap.problem?.understood) failures.push(`${solutionMapPath}: Solution map must include problem.understood.`);
+  if (!solutionMap.problem?.bottleneck) failures.push(`${solutionMapPath}: Solution map must include problem.bottleneck.`);
+  if (!solutionMap.outcome?.desired) failures.push(`${solutionMapPath}: Solution map must include outcome.desired.`);
+  if (!Array.isArray(solutionMap.actions)) failures.push(`${solutionMapPath}: Solution map actions must be an array.`);
+  if (!Array.isArray(solutionMap.checkpoints)) failures.push(`${solutionMapPath}: Solution map checkpoints must be an array.`);
+}
+
 if (failures.length > 0) {
   console.error("Example validation failed:");
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`Example validation passed: ${pipelinePaths.join(", ")}`);
+console.log("Example validation passed.");

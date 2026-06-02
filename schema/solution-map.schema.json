@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/alimuratumutlu/solution-factory/schema/solution-map.schema.json",
+  "title": "Solution Factory Solution Map",
+  "type": "object",
+  "required": ["version", "id", "title", "problem", "outcome", "actions", "checkpoints"],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "problem": {
+      "$ref": "#/$defs/problem"
+    },
+    "outcome": {
+      "$ref": "#/$defs/outcome"
+    },
+    "reverseEngineering": {
+      "$ref": "#/$defs/reverseEngineering"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subgoals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/planItem"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/planItem"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/risk"
+      }
+    },
+    "antiGoals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decisionPoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decisionPoint"
+      }
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/checkpoint"
+      }
+    },
+    "supportPractices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/supportPractice"
+      }
+    },
+    "views": {
+      "type": "array",
+      "items": {
+        "enum": ["pipeline", "graph", "kanban", "timeline", "table"]
+      }
+    }
+  },
+  "$defs": {
+    "problem": {
+      "type": "object",
+      "required": ["original", "understood", "bottleneck"],
+      "properties": {
+        "original": {
+          "type": "string"
+        },
+        "understood": {
+          "type": "string"
+        },
+        "bottleneck": {
+          "type": "string"
+        },
+        "confirmedByUser": {
+          "type": "boolean"
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "required": ["desired", "successSignals"],
+      "properties": {
+        "desired": {
+          "type": "string"
+        },
+        "successSignals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reverseEngineering": {
+      "type": "object",
+      "properties": {
+        "endState": {
+          "type": "string"
+        },
+        "currentState": {
+          "type": "string"
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "leveragePoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "planItem": {
+      "type": "object",
+      "required": ["id", "title"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "timeframe": {
+          "type": "string"
+        },
+        "priority": {
+          "enum": ["low", "medium", "high"]
+        }
+      }
+    },
+    "action": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/planItem"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": ["todo", "doing", "waiting", "done"]
+            },
+            "effort": {
+              "enum": ["small", "medium", "large"]
+            },
+            "impact": {
+              "enum": ["low", "medium", "high"]
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "risk": {
+      "type": "object",
+      "required": ["id", "title"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "mitigation": {
+          "type": "string"
+        }
+      }
+    },
+    "decisionPoint": {
+      "type": "object",
+      "required": ["id", "question"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "deadline": {
+          "type": "string"
+        }
+      }
+    },
+    "checkpoint": {
+      "type": "object",
+      "required": ["id", "title", "cadence"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "cadence": {
+          "type": "string"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "supportPractice": {
+      "type": "object",
+      "required": ["id", "type", "label", "optional"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": ["spiritual", "reflection", "habit"]
+        },
+        "label": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

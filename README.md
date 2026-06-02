@@ -21,6 +21,8 @@ revise, and choose the next move.
 - Reflects the understood problem before proposing a solution.
 - Decomposes the confirmed goal into milestones, actions, risks, checkpoints,
   decision points, and anti-goals.
+- Optionally adds spiritual support practices when the user enables that
+  setting.
 - Lets the user inspect the same plan as kanban, timeline, graph, table, or
   pipeline.
 - Keeps the plan editable instead of treating AI output as final.
@@ -95,6 +97,17 @@ The same plan can be inspected in multiple ways:
 | Table | Task, priority, duration, difficulty, impact |
 | Pipeline | Staged flow with checkpoints and decision gates |
 
+### Optional Spiritual Support
+
+Spiritual support is controlled by user settings and is off by default. When
+enabled, the app may suggest Esma, dua, or dhikr practices as reflective support
+beside the practical action map.
+
+The initial spiritual practice catalog can be derived from the `5-min-dhikr`
+project. That catalog already contains Esma/Dua entries with day/timing labels,
+target counts, and intention categories. Exact clock times should come from
+reviewed source data or the user's preferred reminder times.
+
 ## Product Shape
 
 ```text
@@ -105,7 +118,7 @@ solution-factory/
 ├── examples/
 │   ├── goal-to-pipeline-template/  # Core human planning template
 │   └── fullstack-app-template/     # Developer-oriented future template
-├── docs/                           # Architecture, roadmap, release plan
+├── docs/                           # PRD, architecture, roadmap, release plan
 └── .github/                        # Issues, release workflow, contribution docs
 ```
 
