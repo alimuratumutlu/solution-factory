@@ -44,6 +44,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_dua_subhanallahi_ve_bihamdihi",
@@ -77,6 +78,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_dua_la_havle",
@@ -109,6 +111,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_dua_estagfirullah",
@@ -136,6 +139,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_dua_allahumme_salli",
@@ -164,6 +168,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_1",
@@ -192,6 +197,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_2",
@@ -219,6 +225,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_3",
@@ -246,6 +253,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_4",
@@ -272,6 +280,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_5",
@@ -299,6 +308,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_6",
@@ -326,6 +336,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_7",
@@ -353,6 +364,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_8",
@@ -379,6 +391,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_9",
@@ -405,6 +418,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_10",
@@ -431,6 +445,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_11",
@@ -457,6 +472,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_12",
@@ -485,6 +501,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_13",
@@ -511,6 +528,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_14",
@@ -539,6 +557,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_15",
@@ -566,6 +585,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_16",
@@ -594,6 +614,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_17",
@@ -620,6 +641,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_18",
@@ -647,6 +669,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_19",
@@ -674,6 +697,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_20",
@@ -700,6 +724,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_21",
@@ -726,6 +751,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_22",
@@ -754,6 +780,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_23",
@@ -781,6 +808,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_24",
@@ -808,6 +836,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_25",
@@ -836,6 +865,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_26",
@@ -863,6 +893,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_27",
@@ -891,6 +922,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_28",
@@ -918,6 +950,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_29",
@@ -945,6 +978,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_30",
@@ -972,6 +1006,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_31",
@@ -1000,6 +1035,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_32",
@@ -1027,6 +1063,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_33",
@@ -1054,6 +1091,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_34",
@@ -1081,6 +1119,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_35",
@@ -1109,6 +1148,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_36",
@@ -1136,6 +1176,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_37",
@@ -1162,6 +1203,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_38",
@@ -1188,6 +1230,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_39",
@@ -1214,6 +1257,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_40",
@@ -1240,6 +1284,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_41",
@@ -1266,6 +1311,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_42",
@@ -1292,6 +1338,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_43",
@@ -1319,6 +1366,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_44",
@@ -1345,6 +1393,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_45",
@@ -1373,6 +1422,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_46",
@@ -1399,6 +1449,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_47",
@@ -1425,6 +1476,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_48",
@@ -1451,6 +1503,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_49",
@@ -1479,6 +1532,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_50",
@@ -1505,6 +1559,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_51",
@@ -1531,6 +1586,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_52",
@@ -1558,6 +1614,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_53",
@@ -1584,6 +1641,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_54",
@@ -1610,6 +1668,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_55",
@@ -1636,6 +1695,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_56",
@@ -1662,6 +1722,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_57",
@@ -1688,6 +1749,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_58",
@@ -1714,6 +1776,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_59",
@@ -1740,6 +1803,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_60",
@@ -1766,6 +1830,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_61",
@@ -1794,6 +1859,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_62",
@@ -1822,6 +1888,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_63",
@@ -1849,6 +1916,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_64",
@@ -1875,6 +1943,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_65",
@@ -1901,6 +1970,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_66",
@@ -1927,6 +1997,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_67",
@@ -1954,6 +2025,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_68",
@@ -1980,6 +2052,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_69",
@@ -2007,6 +2080,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_70",
@@ -2034,6 +2108,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_71",
@@ -2060,6 +2135,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_72",
@@ -2086,6 +2162,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_73",
@@ -2113,6 +2190,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_74",
@@ -2139,6 +2217,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_75",
@@ -2165,6 +2244,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_76",
@@ -2192,6 +2272,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_77",
@@ -2218,6 +2299,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_78",
@@ -2246,6 +2328,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_79",
@@ -2272,6 +2355,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_80",
@@ -2298,6 +2382,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_81",
@@ -2324,6 +2409,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_82",
@@ -2350,6 +2436,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_83",
@@ -2378,6 +2465,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_84",
@@ -2405,6 +2493,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_85",
@@ -2431,6 +2520,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_86",
@@ -2458,6 +2548,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_87",
@@ -2484,6 +2575,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_88",
@@ -2510,6 +2602,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_89",
@@ -2536,6 +2629,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_90",
@@ -2563,6 +2657,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_91",
@@ -2591,6 +2686,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_92",
@@ -2617,6 +2713,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_93",
@@ -2643,6 +2740,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_94",
@@ -2669,6 +2767,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_95",
@@ -2697,6 +2796,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_96",
@@ -2723,6 +2823,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_97",
@@ -2750,6 +2851,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_98",
@@ -2776,6 +2878,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_99",
@@ -2804,6 +2907,7 @@
         "timeOfDay": null
       },
       "source": {
+        "origin": "catalog",
         "project": "5-min-dhikr",
         "path": "lib/coreDhikrs.ts",
         "sourceId": "core_esma_100",

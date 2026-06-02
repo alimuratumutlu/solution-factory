@@ -81,6 +81,7 @@ if (existsSync(spiritualCatalogPath)) {
     if (!practice.schedule?.timingLabel) failures.push(`${spiritualCatalogPath}: Practice ${practice.id ?? "(unknown)"} must include schedule.timingLabel.`);
     if (!Number.isFinite(practice.schedule?.count) || practice.schedule.count <= 0) failures.push(`${spiritualCatalogPath}: Practice ${practice.id ?? "(unknown)"} must include positive schedule.count.`);
     if (!("timeOfDay" in (practice.schedule ?? {}))) failures.push(`${spiritualCatalogPath}: Practice ${practice.id ?? "(unknown)"} must include schedule.timeOfDay.`);
+    if (!practice.source?.origin) failures.push(`${spiritualCatalogPath}: Practice ${practice.id ?? "(unknown)"} must include source.origin.`);
     if (!practice.source?.path) failures.push(`${spiritualCatalogPath}: Practice ${practice.id ?? "(unknown)"} must include source.path.`);
     if (!practice.source?.reviewStatus) failures.push(`${spiritualCatalogPath}: Practice ${practice.id ?? "(unknown)"} must include source.reviewStatus.`);
   }

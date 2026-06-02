@@ -75,6 +75,7 @@ record:
     "count": 489
   },
   "source": {
+    "origin": "catalog",
     "project": "5-min-dhikr",
     "path": "lib/coreDhikrs.ts",
     "reviewStatus": "needs_religious_review"
@@ -110,6 +111,12 @@ The importer preserves source day labels, day arrays, target counts,
 categories, and intention tags. It does not invent exact clock times; each
 record keeps `schedule.timeOfDay` as `null` until a reviewed source or the
 user's reminder settings provide one.
+
+Religious content review rules live in:
+
+```text
+docs/religious-content-review.md
+```
 
 ## User Settings
 
