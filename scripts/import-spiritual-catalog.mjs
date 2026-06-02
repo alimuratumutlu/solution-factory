@@ -58,6 +58,7 @@ function toCatalogPractice(item) {
       timeOfDay: null,
     },
     source: {
+      origin: "catalog",
       project: "5-min-dhikr",
       path: "lib/coreDhikrs.ts",
       sourceId: item.id,
@@ -97,6 +98,7 @@ function validateCatalog(catalog) {
     if (practice.schedule?.timeOfDay !== null) {
       failures.push(`${practice.id}: schedule.timeOfDay must be null unless source has an exact clock time.`);
     }
+    if (!practice.source?.origin) failures.push(`${practice.id}: source.origin is required.`);
     if (!practice.source?.path) failures.push(`${practice.id}: source.path is required.`);
     if (!practice.source?.reviewStatus) {
       failures.push(`${practice.id}: source.reviewStatus is required.`);

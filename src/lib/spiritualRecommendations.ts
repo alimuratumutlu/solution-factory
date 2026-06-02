@@ -29,10 +29,16 @@ type SpiritualPractice = {
     timeOfDay: string | null;
   };
   source: {
+    origin: "catalog" | "user_defined" | "ai_suggested";
     project: string;
     path: string;
     sourceId?: string;
-    reviewStatus: "needs_religious_review" | "reviewed" | "rejected";
+    reviewStatus:
+      | "needs_religious_review"
+      | "reviewed"
+      | "rejected"
+      | "user_defined"
+      | "ai_suggested";
   };
 };
 

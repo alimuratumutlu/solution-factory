@@ -1901,8 +1901,9 @@ function App() {
                     ) : null}
                   </dl>
                   <small>
-                    {recommendation.source.project} / {recommendation.source.path} ·{" "}
-                    {recommendation.source.reviewStatus}
+                    {recommendation.source.origin} · {recommendation.source.reviewStatus}
+                    <br />
+                    {recommendation.source.project} / {recommendation.source.path}
                   </small>
                 </article>
               ))}

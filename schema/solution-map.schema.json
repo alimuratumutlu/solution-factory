@@ -314,6 +314,9 @@
             {
               "type": "object",
               "properties": {
+                "origin": {
+                  "enum": ["catalog", "user_defined", "ai_suggested"]
+                },
                 "project": {
                   "type": "string"
                 },
@@ -324,7 +327,13 @@
                   "type": "string"
                 },
                 "reviewStatus": {
-                  "enum": ["needs_religious_review", "reviewed", "rejected", "user_defined"]
+                  "enum": [
+                    "needs_religious_review",
+                    "reviewed",
+                    "rejected",
+                    "user_defined",
+                    "ai_suggested"
+                  ]
                 }
               }
             }
