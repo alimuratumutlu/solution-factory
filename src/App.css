@@ -327,7 +327,8 @@ button:focus-visible {
 
 .question-panel,
 .reflection-card,
-.checkpoint-card {
+.checkpoint-card,
+.spiritual-support-panel {
   padding: 16px;
   background: #ffffff;
   border: 1px solid #e4e8ee;
@@ -509,6 +510,90 @@ button:focus-visible {
 .question-panel.generated li {
   border-color: var(--accent-border);
   background: var(--accent-soft);
+}
+
+.spiritual-support-panel {
+  border-color: rgba(255, 80, 97, 0.2);
+}
+
+.spiritual-recommendation-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.spiritual-recommendation {
+  display: grid;
+  gap: 10px;
+  padding: 13px;
+  background: #fffafb;
+  border: 1px solid rgba(255, 80, 97, 0.18);
+  border-radius: var(--radius-control);
+}
+
+.spiritual-recommendation strong,
+.spiritual-recommendation span,
+.spiritual-recommendation small {
+  display: block;
+}
+
+.spiritual-recommendation strong {
+  color: var(--accent-strong);
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.spiritual-recommendation span {
+  margin-top: 2px;
+  color: #17202f;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.spiritual-recommendation p {
+  margin: 0;
+  color: #5b6575;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.spiritual-recommendation dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+}
+
+.spiritual-recommendation dl div {
+  padding: 7px;
+  background: #ffffff;
+  border: 1px solid rgba(255, 80, 97, 0.12);
+  border-radius: 12px;
+}
+
+.spiritual-recommendation dt,
+.spiritual-recommendation dd {
+  margin: 0;
+}
+
+.spiritual-recommendation dt {
+  color: #8190a3;
+  font-size: 10px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.spiritual-recommendation dd {
+  margin-top: 2px;
+  color: #17202f;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.spiritual-recommendation small {
+  color: #8190a3;
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 .workspace {

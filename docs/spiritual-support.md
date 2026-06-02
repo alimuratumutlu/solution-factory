@@ -137,6 +137,12 @@ Allowed modes:
 
 ## Recommendation Logic
 
+The current implementation lives in:
+
+```text
+src/lib/spiritualRecommendations.ts
+```
+
 1. Read the user's spiritual support settings.
 2. If disabled, skip all spiritual support generation.
 3. Extract intention categories from the confirmed problem and goal.
@@ -146,6 +152,12 @@ Allowed modes:
 7. Apply user preferred reminder time if no exact source time exists.
 8. Show why the suggestion was made.
 9. Keep it optional and editable.
+
+The engine also respects `allowAiSuggestions`. If that setting is false, no
+automatic practice recommendations are generated even when spiritual support is
+enabled. Recommended practices keep their catalog source metadata and are
+rendered as either a separate support panel or an optional `spiritual_support`
+node depending on the user's mode.
 
 ## Plan Integration
 
