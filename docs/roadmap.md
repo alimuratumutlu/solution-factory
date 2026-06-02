@@ -13,6 +13,7 @@
 
 - Editable initial intake form
 - Local AI key settings screen
+- User setting for optional spiritual support
 - Fixed base question flow
 - AI-generated follow-up question draft
 - Problem reflection screen
@@ -24,6 +25,8 @@
   checkpoints
 - First 7 days and first 30 days plan blocks
 - Anti-goals and decision points
+- Optional spiritual support block based on user settings
+- Spiritual practice catalog model with day, time, count, intention, and source
 - Plan JSON import/export
 - Validation for goal pipeline examples
 

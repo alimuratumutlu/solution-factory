@@ -25,6 +25,17 @@ core product behavior is:
 
 ## Core Concepts
 
+### Solution Map
+
+The solution map is the primary product object. It represents the confirmed
+problem, desired outcome, reverse-engineered gaps, actions, milestones, risks,
+decision points, checkpoints, and optional support practices.
+
+The schema lives in `schema/solution-map.schema.json`.
+
+Goal pipelines are derived from solution maps. They are useful for visualizing
+sequence and dependency, but they are not the only representation of the plan.
+
 ### Goal Pipeline
 
 A goal pipeline is a planning graph. It is not necessarily an executable
@@ -41,6 +52,7 @@ Nodes can represent:
 - checkpoints
 - decision points
 - risks
+- optional spiritual support practices
 - views
 
 Edges represent dependency, sequence, revision, or feedback loops.
@@ -90,6 +102,28 @@ The decomposition phase creates:
 - risks
 - anti-goals
 
+### Spiritual Support
+
+Spiritual support is optional and controlled by user settings. It is not a
+default planning behavior and it must not replace practical action steps.
+
+When enabled, the app can add a separate support layer with Esma, dua, or dhikr
+suggestions. Each suggestion should include:
+
+- practice type
+- label and display text
+- intention category
+- suggested day
+- optional time of day
+- count
+- reason for the suggestion
+- source and review status
+
+The first candidate catalog comes from the `5-min-dhikr` project, specifically
+`lib/coreDhikrs.ts`. That file currently contains day/timing labels and target
+counts. Exact clock times should be represented separately and can come from
+user reminder settings or a reviewed source.
+
 ### Views
 
 The plan model should be view-independent. The same underlying plan can render
@@ -124,6 +158,7 @@ are introduced, they must be explicit and user-controlled:
 - require user approval for destructive or account-changing actions
 - keep generated artifacts inspectable
 - distinguish advice, inference, and user-provided facts
+- keep spiritual recommendations optional and source-aware
 - avoid presenting high-stakes personal, medical, legal, or financial output as
   authoritative guidance
 

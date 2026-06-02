@@ -2,6 +2,17 @@
   "version": "0.1.0",
   "name": "Goal-to-Pipeline Workbench",
   "description": "A planning template that turns a messy goal into an editable action map.",
+  "settings": {
+    "spiritualSupport": {
+      "enabled": false,
+      "mode": "off",
+      "allowedTypes": ["Esma", "Dua"],
+      "preferredTimes": [],
+      "allowAiSuggestions": true,
+      "showInSolutionMap": true,
+      "createReminders": false
+    }
+  },
   "nodes": [
     {
       "id": "initial-intake",
@@ -73,6 +84,35 @@
       "timeframe": "weekly"
     },
     {
+      "id": "optional-spiritual-support",
+      "type": "spiritual_support",
+      "label": "Optional Spiritual Support",
+      "description": "Only suggest Esma, dua, or dhikr practices when the user enables spiritual support in settings.",
+      "priority": "low",
+      "spiritualPractices": [
+        {
+          "id": "core_esma_16",
+          "type": "Esma",
+          "label": "YA FETTAH",
+          "displayText": "YA FETTAH",
+          "transliteration": "YA FETTAH",
+          "intentions": ["basari", "ilim"],
+          "reason": "Example support practice for goals involving learning, opening a path, or making progress. It must remain optional and source-reviewed.",
+          "schedule": {
+            "days": ["Car"],
+            "timingLabel": "CARSAMBA",
+            "timeOfDay": null,
+            "count": 489
+          },
+          "source": {
+            "project": "5-min-dhikr",
+            "path": "lib/coreDhikrs.ts",
+            "reviewStatus": "needs_religious_review"
+          }
+        }
+      ]
+    },
+    {
       "id": "view-selection",
       "type": "view",
       "label": "View Selection",
@@ -121,6 +161,12 @@
       "id": "risks-checkpoints",
       "source": "risks",
       "target": "checkpoints"
+    },
+    {
+      "id": "checkpoints-spiritual-support",
+      "source": "checkpoints",
+      "target": "optional-spiritual-support",
+      "condition": "user has enabled spiritual support in settings"
     },
     {
       "id": "checkpoints-views",

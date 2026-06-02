@@ -1,0 +1,161 @@
+{
+  "version": "0.1.0",
+  "id": "career-stuck-example",
+  "title": "Career Direction Reset",
+  "problem": {
+    "original": "I feel stuck in my career and do not know what to improve first.",
+    "understood": "The user is not only looking for a better job. The immediate bottleneck is unclear direction, weak proof of skill, and no small feedback loop.",
+    "bottleneck": "The user lacks a visible next move that can produce feedback within one week.",
+    "confirmedByUser": true
+  },
+  "outcome": {
+    "desired": "Choose a credible direction and create proof that can support better career options.",
+    "successSignals": [
+      "A chosen target role or skill track",
+      "One visible portfolio artifact",
+      "Three conversations or feedback points",
+      "A repeatable weekly improvement routine"
+    ]
+  },
+  "reverseEngineering": {
+    "endState": "The user can explain what they are pursuing, show evidence of progress, and ask for useful opportunities.",
+    "currentState": "The user feels unfocused and is not converting effort into visible proof.",
+    "gaps": [
+      "No target role hypothesis",
+      "No portfolio artifact",
+      "No feedback loop",
+      "No weekly review cadence"
+    ],
+    "leveragePoints": [
+      "Pick one role hypothesis for 30 days",
+      "Build one small public artifact",
+      "Ask for feedback from three people",
+      "Review progress every week"
+    ]
+  },
+  "resources": [
+    "Existing work experience",
+    "Five hours per week",
+    "Access to AI tools for planning and review"
+  ],
+  "constraints": [
+    "Limited time",
+    "Unclear confidence",
+    "Avoid changing every variable at once"
+  ],
+  "subgoals": [
+    {
+      "id": "choose-track",
+      "title": "Choose one career track hypothesis",
+      "description": "Select one direction to test for 30 days.",
+      "timeframe": "First 3 days",
+      "priority": "high"
+    },
+    {
+      "id": "create-proof",
+      "title": "Create one visible proof artifact",
+      "description": "Make a small project, case study, or writing sample that demonstrates the chosen track.",
+      "timeframe": "First 7 days",
+      "priority": "high"
+    }
+  ],
+  "actions": [
+    {
+      "id": "inventory",
+      "title": "List existing skills and proof",
+      "description": "Write down past work, strengths, and evidence that already exists.",
+      "timeframe": "Day 1",
+      "priority": "high",
+      "status": "todo",
+      "effort": "small",
+      "impact": "high",
+      "dependsOn": []
+    },
+    {
+      "id": "pick-role",
+      "title": "Pick one target role hypothesis",
+      "description": "Choose one role to test instead of keeping all possible paths open.",
+      "timeframe": "Day 2",
+      "priority": "high",
+      "status": "todo",
+      "effort": "small",
+      "impact": "high",
+      "dependsOn": ["inventory"]
+    },
+    {
+      "id": "ship-proof",
+      "title": "Ship a small public proof artifact",
+      "description": "Publish one small artifact that makes the chosen direction visible.",
+      "timeframe": "Day 7",
+      "priority": "high",
+      "status": "todo",
+      "effort": "medium",
+      "impact": "high",
+      "dependsOn": ["pick-role"]
+    }
+  ],
+  "milestones": [
+    {
+      "id": "first-week-proof",
+      "title": "First proof shipped",
+      "description": "The user has something visible to discuss and improve.",
+      "timeframe": "7 days",
+      "priority": "high"
+    },
+    {
+      "id": "first-month-direction",
+      "title": "30-day direction review",
+      "description": "The user decides whether to continue, adjust, or abandon the chosen track.",
+      "timeframe": "30 days",
+      "priority": "high"
+    }
+  ],
+  "risks": [
+    {
+      "id": "overplanning",
+      "title": "Overplanning instead of creating proof",
+      "mitigation": "Limit planning to one hour, then create a visible artifact."
+    },
+    {
+      "id": "too-many-directions",
+      "title": "Testing too many career directions at once",
+      "mitigation": "Use a 30-day track hypothesis instead of a permanent decision."
+    }
+  ],
+  "antiGoals": [
+    "Do not redesign the whole life plan in one sitting.",
+    "Do not wait for perfect certainty before testing one direction.",
+    "Do not use AI output as final truth without personal review."
+  ],
+  "decisionPoints": [
+    {
+      "id": "continue-or-adjust",
+      "question": "After 30 days, did this track produce energy, evidence, or useful feedback?",
+      "deadline": "Day 30"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "weekly-review",
+      "title": "Weekly review",
+      "cadence": "weekly",
+      "questions": [
+        "What did I ship?",
+        "What feedback did I receive?",
+        "What became clearer?",
+        "What should change next week?"
+      ]
+    }
+  ],
+  "supportPractices": [
+    {
+      "id": "optional-reflection",
+      "type": "reflection",
+      "label": "Two-minute intention check",
+      "reason": "This supports attention and commitment without replacing the practical action plan.",
+      "optional": true,
+      "source": "user setting"
+    }
+  ],
+  "views": ["pipeline", "graph", "kanban", "timeline", "table"]
+}
