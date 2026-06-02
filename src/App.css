@@ -728,6 +728,11 @@ button:focus-visible {
   background: var(--accent);
 }
 
+.spiritual-logo {
+  background:
+    linear-gradient(135deg, rgba(255, 80, 97, 0.96), rgba(255, 138, 154, 0.88));
+}
+
 .provider-card h4 {
   margin: 0;
   color: #111827;
@@ -762,6 +767,222 @@ button:focus-visible {
   display: grid;
   grid-template-columns: minmax(240px, 1.1fr) minmax(220px, 0.9fr);
   gap: 12px;
+}
+
+.spiritual-card {
+  border-color: rgba(255, 80, 97, 0.24);
+}
+
+.spiritual-card.enabled {
+  box-shadow: 0 22px 54px rgba(255, 80, 97, 0.09);
+}
+
+.support-settings-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.support-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px;
+  background: #fffafb;
+  border: 1px solid rgba(255, 80, 97, 0.18);
+  border-radius: var(--radius-control);
+}
+
+.support-toggle-row strong {
+  display: block;
+  color: #111827;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.support-toggle-row span {
+  display: block;
+  max-width: 680px;
+  margin-top: 4px;
+  color: #687385;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.settings-switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 30px;
+  padding: 3px;
+  background: #dfe5ec;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.settings-switch span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  background: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.16);
+  transform: translateX(0);
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.settings-switch.active {
+  background: var(--accent);
+}
+
+.settings-switch.active span {
+  transform: translateX(18px);
+}
+
+.settings-group {
+  display: grid;
+  gap: 8px;
+}
+
+.settings-group > span {
+  color: #687385;
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.support-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.support-mode-option {
+  display: grid;
+  gap: 4px;
+  min-height: 86px;
+  padding: 12px;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #dfe5ec;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  text-align: left;
+}
+
+.support-mode-option:hover,
+.support-mode-option.active {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+.support-mode-option strong {
+  color: inherit;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.support-mode-option span {
+  color: #687385;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.practice-type-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.practice-type-chip {
+  min-height: 34px;
+  padding: 7px 12px;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #dfe5ec;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.practice-type-chip.selected {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+.practice-type-chip:disabled,
+.support-permission:disabled,
+.support-time-grid input:disabled {
+  opacity: 0.52;
+  cursor: not-allowed;
+}
+
+.support-time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.support-permission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.support-permission {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  min-height: 78px;
+  padding: 12px;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #dfe5ec;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  text-align: left;
+}
+
+.support-permission svg {
+  margin-top: 1px;
+  color: #94a3b8;
+}
+
+.support-permission strong,
+.support-permission em {
+  display: block;
+}
+
+.support-permission strong {
+  color: #17202f;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+.support-permission em {
+  margin-top: 3px;
+  color: #687385;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.support-permission.selected {
+  background: #fffafb;
+  border-color: rgba(255, 80, 97, 0.24);
+}
+
+.support-permission.selected svg {
+  color: var(--accent);
 }
 
 .provider-field {
