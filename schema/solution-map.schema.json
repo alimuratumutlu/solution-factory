@@ -259,14 +259,76 @@
         "label": {
           "type": "string"
         },
+        "practiceType": {
+          "enum": ["Esma", "Dua", "Dhikr"]
+        },
+        "displayText": {
+          "type": "string"
+        },
+        "transliteration": {
+          "type": "string"
+        },
+        "intentions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "matchedIntentions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "reason": {
           "type": "string"
         },
         "optional": {
           "type": "boolean"
         },
+        "schedule": {
+          "type": "object",
+          "properties": {
+            "days": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "timingLabel": {
+              "type": "string"
+            },
+            "timeOfDay": {
+              "type": ["string", "null"]
+            },
+            "count": {
+              "type": "number"
+            }
+          }
+        },
         "source": {
-          "type": "string"
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "project": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "sourceId": {
+                  "type": "string"
+                },
+                "reviewStatus": {
+                  "enum": ["needs_religious_review", "reviewed", "rejected", "user_defined"]
+                }
+              }
+            }
+          ]
         }
       }
     }

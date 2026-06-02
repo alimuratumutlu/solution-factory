@@ -48,6 +48,7 @@ import {
   UserRound,
 } from "lucide-react";
 import "./App.css";
+import { recommendSpiritualPractices } from "./lib/spiritualRecommendations";
 
 type GoalNodeData = {
   label: string;
@@ -1002,6 +1003,21 @@ function App() {
   const selectedTemplate = intakeTemplates.find(
     (template) => template.id === selectedTemplateId,
   );
+  const spiritualRecommendations = useMemo(
+    () =>
+      recommendSpiritualPractices({
+        settings: spiritualSupport,
+        text: [
+          selectedFile?.name,
+          selectedFile?.description,
+          questionSet.summary,
+          questionSet.bottleneck,
+        ]
+          .filter(Boolean)
+          .join(" "),
+      }),
+    [questionSet.bottleneck, questionSet.summary, selectedFile, spiritualSupport],
+  );
   const hasAnyAiKey = Boolean(
     openAiKey.trim() || claudeKey.trim() || openRouterKey.trim(),
   );
@@ -1853,6 +1869,46 @@ function App() {
             ))}
           </ul>
         </section>
+
+        {selectedFile && spiritualRecommendations.length > 0 ? (
+          <section className="spiritual-support-panel">
+            <div className="section-title">
+              <HeartPulse size={17} />
+              <span>Optional support</span>
+            </div>
+            <div className="spiritual-recommendation-list">
+              {spiritualRecommendations.map((recommendation) => (
+                <article className="spiritual-recommendation" key={recommendation.id}>
+                  <div>
+                    <strong>{recommendation.label}</strong>
+                    <span>{recommendation.transliteration}</span>
+                  </div>
+                  <p>{recommendation.reason}</p>
+                  <dl>
+                    <div>
+                      <dt>Day</dt>
+                      <dd>{recommendation.schedule.timingLabel}</dd>
+                    </div>
+                    <div>
+                      <dt>Count</dt>
+                      <dd>{recommendation.schedule.count}</dd>
+                    </div>
+                    {recommendation.schedule.timeOfDay ? (
+                      <div>
+                        <dt>Time</dt>
+                        <dd>{recommendation.schedule.timeOfDay}</dd>
+                      </div>
+                    ) : null}
+                  </dl>
+                  <small>
+                    {recommendation.source.project} / {recommendation.source.path} ·{" "}
+                    {recommendation.source.reviewStatus}
+                  </small>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="checkpoint-card">
           <div className="section-title">
