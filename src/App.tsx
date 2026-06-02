@@ -270,6 +270,20 @@ type ModelOption = {
   value: string;
 };
 
+type PracticeType = "Esma" | "Dua" | "Dhikr";
+
+type SpiritualSupportMode = "off" | "gentle" | "integrated";
+
+type SpiritualSupportSettings = {
+  allowAiSuggestions: boolean;
+  allowedTypes: PracticeType[];
+  createReminders: boolean;
+  enabled: boolean;
+  mode: SpiritualSupportMode;
+  preferredTimes: string[];
+  showInSolutionMap: boolean;
+};
+
 type ModelDropdownProps = {
   id: string;
   isOpen: boolean;
@@ -278,6 +292,86 @@ type ModelDropdownProps = {
   options: ModelOption[];
   value: string;
 };
+
+const practiceTypes: PracticeType[] = ["Esma", "Dua", "Dhikr"];
+
+const spiritualSupportModes: Array<{
+  description: string;
+  label: string;
+  value: SpiritualSupportMode;
+}> = [
+  {
+    description: "Never generate or show spiritual support.",
+    label: "Off",
+    value: "off",
+  },
+  {
+    description: "Show a separate optional support block.",
+    label: "Gentle",
+    value: "gentle",
+  },
+  {
+    description: "Allow optional support nodes in solution maps.",
+    label: "Integrated",
+    value: "integrated",
+  },
+];
+
+const defaultSpiritualSupportSettings: SpiritualSupportSettings = {
+  allowAiSuggestions: true,
+  allowedTypes: ["Esma", "Dua"],
+  createReminders: false,
+  enabled: false,
+  mode: "off",
+  preferredTimes: [],
+  showInSolutionMap: true,
+};
+
+function getStoredSpiritualSupportSettings(): SpiritualSupportSettings {
+  try {
+    const storedSettings = window.localStorage.getItem(
+      "solution-factory.spiritual-support",
+    );
+    if (!storedSettings) {
+      return defaultSpiritualSupportSettings;
+    }
+
+    const parsed = JSON.parse(storedSettings) as Partial<SpiritualSupportSettings>;
+    const mode = spiritualSupportModes.some((item) => item.value === parsed.mode)
+      ? (parsed.mode as SpiritualSupportMode)
+      : defaultSpiritualSupportSettings.mode;
+    const enabled = Boolean(parsed.enabled) && mode !== "off";
+    const allowedTypes = Array.isArray(parsed.allowedTypes)
+      ? parsed.allowedTypes.filter((type): type is PracticeType =>
+          practiceTypes.includes(type as PracticeType),
+        )
+      : defaultSpiritualSupportSettings.allowedTypes;
+    const preferredTimes = Array.isArray(parsed.preferredTimes)
+      ? parsed.preferredTimes.filter((time): time is string => typeof time === "string")
+      : defaultSpiritualSupportSettings.preferredTimes;
+
+    return {
+      allowAiSuggestions:
+        typeof parsed.allowAiSuggestions === "boolean"
+          ? parsed.allowAiSuggestions
+          : defaultSpiritualSupportSettings.allowAiSuggestions,
+      allowedTypes: allowedTypes.length > 0 ? allowedTypes : ["Esma"],
+      createReminders:
+        typeof parsed.createReminders === "boolean"
+          ? parsed.createReminders
+          : defaultSpiritualSupportSettings.createReminders,
+      enabled,
+      mode: enabled ? mode : "off",
+      preferredTimes,
+      showInSolutionMap:
+        typeof parsed.showInSolutionMap === "boolean"
+          ? parsed.showInSolutionMap
+          : defaultSpiritualSupportSettings.showInSolutionMap,
+    };
+  } catch {
+    return defaultSpiritualSupportSettings;
+  }
+}
 
 type KnowledgeGraphNode = SimulationNodeDatum & {
   id: string;
@@ -887,6 +981,9 @@ function App() {
     () =>
       getStoredModel("solution-factory.openrouter-model", openRouterModelOptions),
   );
+  const [spiritualSupport, setSpiritualSupport] = useState(
+    getStoredSpiritualSupportSettings,
+  );
   const [intakeText, setIntakeText] = useState("");
   const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(
     null,
@@ -988,6 +1085,51 @@ function App() {
     window.localStorage.setItem("solution-factory.claude-model", claudeModel);
     window.localStorage.setItem("solution-factory.openrouter-key", openRouterKey);
     window.localStorage.setItem("solution-factory.openrouter-model", openRouterModel);
+    window.localStorage.setItem(
+      "solution-factory.spiritual-support",
+      JSON.stringify(spiritualSupport),
+    );
+  }
+
+  function updateSpiritualSupport(patch: Partial<SpiritualSupportSettings>) {
+    setSpiritualSupport((current) => {
+      const next = { ...current, ...patch };
+      if (patch.mode === "off" || patch.enabled === false) {
+        return { ...next, enabled: false, mode: "off" };
+      }
+      if (patch.mode === "gentle" || patch.mode === "integrated") {
+        return { ...next, enabled: true, mode: patch.mode };
+      }
+      if (patch.enabled === true && next.mode === "off") {
+        return { ...next, enabled: true, mode: "gentle" };
+      }
+      return next;
+    });
+  }
+
+  function togglePracticeType(type: PracticeType) {
+    setSpiritualSupport((current) => {
+      const hasType = current.allowedTypes.includes(type);
+      const nextTypes = hasType
+        ? current.allowedTypes.filter((item) => item !== type)
+        : [...current.allowedTypes, type];
+
+      return {
+        ...current,
+        allowedTypes: nextTypes.length > 0 ? nextTypes : [type],
+      };
+    });
+  }
+
+  function updatePreferredTime(index: number, value: string) {
+    setSpiritualSupport((current) => {
+      const nextTimes = [...current.preferredTimes];
+      nextTimes[index] = value;
+      return {
+        ...current,
+        preferredTimes: nextTimes.filter(Boolean),
+      };
+    });
   }
 
   async function beginGoalPipeline() {
@@ -1163,14 +1305,14 @@ function App() {
           <div>
             <h2>
               {showSettings
-                ? "AI providers"
+                ? "Settings"
                 : selectedFile
                   ? selectedFile.name
                   : "Describe the problem you want to solve"}
             </h2>
             <p>
               {showSettings
-                ? "Add model providers, save local API keys, and choose default models for personalized goal planning."
+                ? "Add model providers and choose whether optional spiritual support can appear in solution maps."
                 : selectedFile
                   ? `${selectedProject.name} / ${selectedFile.description}`
                   : `${selectedProject.name} is empty. Start with a few words or choose a template.`}
@@ -1287,7 +1429,7 @@ function App() {
                     Back
                   </button>
                   <button className="settings-save" type="button" onClick={saveAiSettings}>
-                    Save providers
+                    Save settings
                   </button>
                 </div>
               </div>
@@ -1406,6 +1548,186 @@ function App() {
                         options={openRouterModelOptions}
                         value={openRouterModel}
                       />
+                    </div>
+                  </div>
+                </section>
+
+                <section
+                  className={
+                    spiritualSupport.enabled
+                      ? "provider-card spiritual-card enabled"
+                      : "provider-card spiritual-card"
+                  }
+                >
+                  <div className="provider-card-top">
+                    <div className="provider-logo spiritual-logo">
+                      <HeartPulse size={19} />
+                    </div>
+                    <div>
+                      <h4>Spiritual support</h4>
+                      <p>
+                        Optional Esma, dua, or dhikr support for reflection,
+                        not a guaranteed solution. It stays hidden unless the
+                        user enables it.
+                      </p>
+                    </div>
+                    <span
+                      className={
+                        spiritualSupport.enabled ? "provider-status ready" : "provider-status"
+                      }
+                    >
+                      {spiritualSupport.enabled ? "Enabled" : "Off"}
+                    </span>
+                  </div>
+
+                  <div className="support-settings-grid">
+                    <div className="support-toggle-row">
+                      <div>
+                        <strong>Enable spiritual support</strong>
+                        <span>
+                          Keep this off to prevent spiritual recommendations from
+                          appearing in AI output or plan views.
+                        </span>
+                      </div>
+                      <button
+                        aria-pressed={spiritualSupport.enabled}
+                        className={
+                          spiritualSupport.enabled
+                            ? "settings-switch active"
+                            : "settings-switch"
+                        }
+                        onClick={() =>
+                          updateSpiritualSupport({
+                            enabled: !spiritualSupport.enabled,
+                          })
+                        }
+                        type="button"
+                      >
+                        <span />
+                      </button>
+                    </div>
+
+                    <div className="settings-group">
+                      <span>Support mode</span>
+                      <div className="support-mode-grid">
+                        {spiritualSupportModes.map((mode) => {
+                          const isActive = spiritualSupport.mode === mode.value;
+
+                          return (
+                            <button
+                              className={
+                                isActive
+                                  ? "support-mode-option active"
+                                  : "support-mode-option"
+                              }
+                              key={mode.value}
+                              onClick={() => updateSpiritualSupport({ mode: mode.value })}
+                              type="button"
+                            >
+                              <strong>{mode.label}</strong>
+                              <span>{mode.description}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="settings-group">
+                      <span>Allowed practice types</span>
+                      <div className="practice-type-row">
+                        {practiceTypes.map((type) => {
+                          const isSelected = spiritualSupport.allowedTypes.includes(type);
+
+                          return (
+                            <button
+                              className={
+                                isSelected
+                                  ? "practice-type-chip selected"
+                                  : "practice-type-chip"
+                              }
+                              disabled={!spiritualSupport.enabled}
+                              key={type}
+                              onClick={() => togglePracticeType(type)}
+                              type="button"
+                            >
+                              {type}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="settings-group">
+                      <span>Preferred reminder times</span>
+                      <div className="support-time-grid">
+                        {[
+                          ...spiritualSupport.preferredTimes,
+                          "",
+                        ]
+                          .slice(0, 3)
+                          .map((time, index) => (
+                            <label className="provider-field" key={`time-${index}`}>
+                              <span>Time {index + 1}</span>
+                              <input
+                                disabled={!spiritualSupport.enabled}
+                                type="time"
+                                value={time}
+                                onChange={(event) =>
+                                  updatePreferredTime(index, event.target.value)
+                                }
+                              />
+                            </label>
+                          ))}
+                      </div>
+                    </div>
+
+                    <div className="support-permission-grid">
+                      {[
+                        {
+                          key: "allowAiSuggestions",
+                          label: "Allow AI suggestions",
+                          text: "AI may suggest matching support practices when enabled.",
+                        },
+                        {
+                          key: "showInSolutionMap",
+                          label: "Show in solution maps",
+                          text: "Optional support can appear beside practical steps.",
+                        },
+                        {
+                          key: "createReminders",
+                          label: "Create reminders",
+                          text: "Future reminder nodes may use preferred times.",
+                        },
+                      ].map((item) => {
+                        const key = item.key as keyof Pick<
+                          SpiritualSupportSettings,
+                          "allowAiSuggestions" | "showInSolutionMap" | "createReminders"
+                        >;
+                        const isSelected = Boolean(spiritualSupport[key]);
+
+                        return (
+                          <button
+                            aria-pressed={isSelected}
+                            className={
+                              isSelected
+                                ? "support-permission selected"
+                                : "support-permission"
+                            }
+                            disabled={!spiritualSupport.enabled}
+                            key={item.key}
+                            onClick={() =>
+                              updateSpiritualSupport({ [key]: !isSelected })
+                            }
+                            type="button"
+                          >
+                            <CheckCircle2 size={16} />
+                            <span>
+                              <strong>{item.label}</strong>
+                              <em>{item.text}</em>
+                            </span>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 </section>
